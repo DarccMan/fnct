@@ -1,0 +1,26 @@
+{
+  "name": "fnct",
+  "version": "1.1.0",
+  "description": "Functions.js is a javascript library for NodeJS and html. It is a compilation of various functions and classes that are very useful.",
+  "main": "latest.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarccMan/fnct.git"
+  },
+  "keywords": [
+    "function",
+    "functions",
+    "fnct",
+    "fjs",
+    "functionjs"
+  ],
+  "author": "Darcy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DarccMan/fnct/issues"
+  },
+  "homepage": "https://github.com/DarccMan/fnct#readme"
+}
