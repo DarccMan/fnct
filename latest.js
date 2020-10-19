@@ -261,6 +261,26 @@ String.prototype.lower = function () {
 String.prototype.upper = function () {
   return (this.toString().toUpperCase());
 }
+String.fill = function (amount, fill, reverse) {
+  let str = this.toString();
+  if (! amount) {
+    amount = 2;
+  }
+  if (! fill) {
+    fill = "0";
+  }
+  if (str) {
+    if (str.length > amount) {
+      amount = str.length;
+    }
+    str += "";
+    if (reverse) {
+      return (str + (fill.repeat(Math.max(0, amount - str.length))));
+    }
+    return ((fill.repeat(Math.max(0, amount - str.length))) + str);
+  }
+  return (str);
+}
 
 
 /* Number functions */
@@ -1300,10 +1320,18 @@ if (F._data.event) {
     onCanvas: false,
     unknown: true,
   };
-  F.getMousePos = function (e) {
+  F.getMousePos = function (e, offsetX, offsetY) {
+    offsetX = parseInt(offsetX);
+    offsetY = parseInt(offsetY);
+    if (! offsetX) {
+      offsetX = 11;
+    }
+    if (! offsetY) {
+      offsetY = 11;
+    }
     return {
-      x: e.clientX,
-      y: e.clientY,
+      x: e.clientX - 11,
+      y: e.clientY - 11,
     };
   }
   F.onCanvas = function (e) {
