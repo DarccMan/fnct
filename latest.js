@@ -39,13 +39,13 @@ try {
 
 /* String functions */
 F.fillStr = function (str, amount, fill, reverse) {
-  if ([null, undefined, ""].includes(amount)) {
+  if (! amount) {
     amount = 2;
   }
-  if ([null, undefined, ""].includes(fill)) {
+  if (! fill) {
     fill = "0";
   }
-  if (![null, undefined].includes(str)) {
+  if (str || str == "") {
     if (str.length > amount) {
       amount = str.length;
     }
@@ -295,7 +295,7 @@ String.prototype.fill = function (amount, fill, reverse) {
   if (! fill) {
     fill = "0";
   }
-  if (str) {
+  if (str || str == "") {
     if (str.length > amount) {
       amount = str.length;
     }
