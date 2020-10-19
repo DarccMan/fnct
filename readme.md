@@ -1,5 +1,5 @@
 # Functions.js
-Functions.js is a javascript library for NodeJS and html. It is a compilation of various functions and classes that are very useful.
+Functions.js is a javascript library for NodeJS and HTML. It is a compilation of various functions and classes that are very useful.
 
 ## Installation
 
@@ -13,15 +13,16 @@ npm install fnct
 
 ### HTML / Browser
 
-<!-- Add this line into your `index.html` file -->
 HTML support still in development
-For now, just download [this](https://raw.githubusercontent.com/DarccMan/fnct/master/latest.js) file and add this line into your `index.html` file
+
+For now, just download [this](https://raw.githubusercontent.com/DarccMan/fnct/master/latest.js) and add this line into your `index.html` file
 
 ```html
 <script type="text/javascript" src="./functions.js"></script>
 ```
 
-<!-- ```html
+<!-- Add this line into your `index.html` file
+```html
 <script type="text/javascript" src="https://darccman.github.io/fnct/latest.js"></script>
 ``` -->
 
