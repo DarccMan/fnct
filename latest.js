@@ -261,7 +261,7 @@ String.prototype.lower = function () {
 String.prototype.upper = function () {
   return (this.toString().toUpperCase());
 }
-String.fill = function (amount, fill, reverse) {
+String.prototype.fill = function (amount, fill, reverse) {
   let str = this.toString();
   if (! amount) {
     amount = 2;
