@@ -57,6 +57,32 @@ F.fillStr = function (str, amount, fill, reverse) {
   }
   return (str);
 }
+F.center = function (str, amount, fill, fill2, priority) {
+  if (!amount) {
+    amount = 20;
+  }
+  if (!fill) {
+    fill = " ";
+  }
+  if (!fill2) {
+    fill2 = fill;
+  }
+  if (str.length > amount) {
+    amount = str.length;
+  }
+  let amount2 = (amount - str.length) / 2;
+  fillR = amount2.round("c");
+  fillL = amount2.round("c");
+  ret = fill.repeat(fillL) + str + fill2.repeat(fillR);
+  if (ret.length > amount) {
+    if (priority) {
+      fillR--;
+    } else {
+      fillL--;
+    }
+  }
+  return (fill.repeat(fillL) + str + fill2.repeat(fillR));
+}
 F.isJson = function (str) {
   try {
     JSON.parse(str);
@@ -280,6 +306,33 @@ String.prototype.fill = function (amount, fill, reverse) {
     return ((fill.repeat(Math.max(0, amount - str.length))) + str);
   }
   return (str);
+}
+String.prototype.center = function (amount, fill, fill2, priority) {
+  let str = this.toString();
+  if (!amount) {
+    amount = 20;
+  }
+  if (!fill) {
+    fill = " ";
+  }
+  if (!fill2) {
+    fill2 = fill;
+  }
+  if (str.length > amount) {
+    amount = str.length;
+  }
+  let amount2 = (amount - str.length) / 2;
+  fillR = amount2.round("c");
+  fillL = amount2.round("c");
+  ret = fill.repeat(fillL) + str + fill2.repeat(fillR);
+  if (ret.length > amount) {
+    if (priority) {
+      fillR--;
+    } else {
+      fillL--;
+    }
+  }
+  return (fill.repeat(fillL) + str + fill2.repeat(fillR));
 }
 
 
