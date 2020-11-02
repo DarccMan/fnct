@@ -5,7 +5,7 @@ F._data = {
   event: true,
   document: true,
   node: true,
-  version = null,
+  version: null,
 };
 
 try {
@@ -87,7 +87,7 @@ F.center = function (str, amount, fill, fill2, priority) {
 F.isJson = function (str) {
   try {
     JSON.parse(str);
-  } catch (e) {
+  } catch {
     return (false);
   }
   return (true);
@@ -599,22 +599,42 @@ F.operate.bit.rshift = function (v1, v2) {
 }
 F.operate.math = {};
 F.operate.math.add = function (v1, v2) {
-  return (v1 + v2);
+  let num = 0;
+  for (i = 0; i < arguments.length; i++) {
+    num += parseFloat(arguments[i]);
+  }
+  return (num);
 }
 F.operate.math.subtract = function (v1, v2) {
-  return (v1 - v2);
+  let num = parseFloat(arguments[0]);
+  for (i = 1; i < arguments.length; i++) {
+    num -= parseFloat(arguments[i]);
+  }
+  return (num);
 }
 F.operate.math.multiply = function (v1, v2) {
-  return (v1 * v2);
+  let num = parseFloat(arguments[0]);
+  for (i = 1; i < arguments.length; i++) {
+    num *= parseFloat(arguments[i]);
+  }
+  return (num);
 }
 F.operate.math.divide = function (v1, v2) {
-  return (v1 / v2);
+  let num = parseFloat(arguments[0]);
+  for (i = 1; i < arguments.length; i++) {
+    num /= parseFloat(arguments[i]);
+  }
+  return (num);
+}
+F.operate.math.power = function (v1, v2) {
+  let num = parseFloat(arguments[0]);
+  for (i = 1; i < arguments.length; i++) {
+    num **= parseFloat(arguments[i]);
+  }
+  return (num);
 }
 F.operate.math.mod = function (v1, v2) {
   return (v1 % v2);
-}
-F.operate.math.power = function (v1, v2) {
-  return (v1 ** v2);
 }
 F.splitDivide = function (num, amount) {
   let arr = [];
@@ -846,12 +866,13 @@ F.joinArray = function () {
   }
   return (a);
 }
+F.toArray = function (v) {
+  if (v && typeof v == "object") {
+    return (v);
+  }
+  return ([v]);
+}
 Array.prototype.sub = function (start, end) {
-  /* var a = this;
-  var arr = [];
-  for (i = 0; i < a.length; i++) {
-    arr.push(a[i]);
-  } */
   var arr = this;
   for (a = 0; a < arr.length; a++) {
     if (typeof arr[a] != "string") {
@@ -873,9 +894,15 @@ Array.prototype.sub = function (start, end) {
   if (end < 0) {
     end = arr.length + end + 1;
   }
+  if (start < 0 && end >= 0) {
+    start = 0;
+  }
   arr = arr.slice(start, end);
   if (arr.length <= 1) {
-    return (arr.join(""));
+    if (F.isJson(arr)) {
+      arr = JSON.parse(arr);
+    }
+    return (arr);
   }
   for (a = 0; a < arr.length; a++) {
     if (F.isJson(arr[a])) {
@@ -1188,29 +1215,32 @@ F.angleAmount = function (angle) {
 }
 F.vals = {}
 F.val = function (name, condition, func1, func2, start) {
-  if ([null, undefined, ""].includes(F.vals[name])) {
-    if ([null, undefined, ""].includes(start)) {
+  if (F.vals[name]) {
+    if (start) {
       start = false;
     }
     F.vals[name] = start;
   }
   if (condition) {
+    // console.log(0);
     if (F.vals[name]) {
-      if (![null, undefined].includes(func1) && typeof func1 == "function") {
+      if (func1 && typeof func1 == "function") {
         func1();
       } else {
         return (true);
       }
-      F.vals[name] = false;
     } else {
-      if (![null, undefined].includes(func2) && typeof func2 == "function") {
+      if (func2 && typeof func2 == "function") {
         func2();
       } else {
         return (false);
       }
     }
+    F.vals[name] = false;
   } else {
+    // console.log(1);
     F.vals[name] = true;
+    return (false);
   }
 }
 F.trace = function (p1, p2, pd) {
@@ -1391,10 +1421,12 @@ if (F._data.event) {
   F.onCanvas = function (e) {
     if (doc.tag("canvas").length >= 1) {
       F.rect = doc.tag("canvas")[0].getBoundingClientRect();
-      if (e.clientX >= F.rect.left &&
-        e.clientY >= F.rect.top &&
-        e.clientX <= (doc.tag("canvas")[0].width + (F.rect.left)) &&
-        e.clientY <= (doc.tag("canvas")[0].height + (F.rect.top))) {
+      if (
+        e.clientX > F.rect.left
+        && e.clientY > F.rect.top
+        && e.clientX < (doc.tag("canvas")[0].width + (F.rect.left))
+        && e.clientY < (doc.tag("canvas")[0].height + (F.rect.top))
+      ) {
         return (true);
       }
     }
@@ -1449,7 +1481,7 @@ F.getColor = function (arr, add, type) {
   switch (type) {
     default: {
       if (arr.length >= 4) {
-        return ("rgba({0}, {1}, {2}, {3})".format((arr[0] + add), (arr[1] + add), (arr[2] + add), arr[3]));
+        return ("rgba({0}, {1}, {2}, {3})".format(arr));
       } else if (arr.length == 1) {
         return ("rgb({0}, {0}, {0})".format(arr.addAll(add)));
       } else {
@@ -1478,16 +1510,36 @@ F.hex_hsv = function (hex) {
   return (F.rgb_hsv(F.hex_rgb(hex)));
 }
 F.toHex = function (c) {
-  var hex = c.toString(16);
-  return (hex.length == 1 ? "0" + hex : hex);
-}
-F.rgb_hex = function (r, g, b) {
-  if (arguments.length === 1) {
-    if (r != undefined && r.constructor == Object) {
-      g = r.g, b = r.b, r = r.r;
-    } else {
-      g = r[1], b = r[2], r = r[0];
+  if (c || c == 0) {
+    let hex = c.toString(16);
+    if (hex) {
+      return (hex.length == 1 ? "0" + hex : hex);
     }
+  }
+  return ("ff");
+}
+F.rgb_hex = function (r, g, b, a) {
+  if (arguments.length === 1) {
+    if (r || r == 0) {
+      if (r.constructor == Object) {
+        g = r.g, b = r.b;
+        if (r.a) {
+          a = r.a;
+        }
+        r = r.r;
+      } else {
+        g = r[1], b = r[2];
+        if (r[3]) {
+          a = r[3];
+        }
+        r = r[0];
+      }
+    } else {
+      r = 0, g = 0, b = 0;
+    }
+  }
+  if (a) {
+    return ("#" + F.toHex(r) + F.toHex(g) + F.toHex(b) + F.toHex(a));
   }
   return ("#" + F.toHex(r) + F.toHex(g) + F.toHex(b));
 }
@@ -1919,13 +1971,22 @@ if (F._data.document) {
     F.download(canv.toDataURL(), fileName);
   }
   F.Sound = class {
-    constructor(src) {
+    constructor(src, parent) {
       this.sound = doc.create("audio");
+      this.id = "sound_src";
       this.sound.src = src;
       this.sound.setAttribute("preload", "auto");
       this.sound.setAttribute("controls", "none");
       this.sound.style.display = "none";
-      doc.head.appendChild(this.sound);
+      if (parent) {
+        if (parent.constructor == String) {
+          doc.id(parent).appendChild(this.sound);
+        } else {
+          parent.appendChild(this.sound);
+        }
+      } else {
+        doc.head.appendChild(this.sound);
+      }
     }
     play = function () {
       this.sound.play();
