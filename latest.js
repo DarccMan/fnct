@@ -841,6 +841,9 @@ Number.prototype.snapTo = function () {
   }
   return (arr[min.n]);
 }
+Number.prototype.toTime = function () {
+  return (F.toTime(parseFloat(this)));
+}
 
 
 /* Date / time functions */
