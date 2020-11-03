@@ -335,6 +335,18 @@ String.prototype.center = function (amount, fill, fill2, priority) {
   }
   return (fill.repeat(fillL) + str + fill2.repeat(fillR));
 }
+String.prototype.splitAll = function () {
+  let arr = arguments.toArray();
+  if (arr && arr[0]) {
+    if (arr[0].constructor == Array) {
+      arr = arr[0];
+    }
+    let str = this.toString();
+    str = str.replaceMany(arr.sub(1, -1), arr[0]);
+    return (str.split(arr[0]));
+  }
+  return (str);
+}
 
 
 /* Number functions */
@@ -598,40 +610,75 @@ F.operate.bit.rshift = function (v1, v2) {
   return (v1 >> v2);
 }
 F.operate.math = {};
-F.operate.math.add = function (v1, v2) {
-  let num = 0;
-  for (i = 0; i < arguments.length; i++) {
-    num += parseFloat(arguments[i]);
+F.operate.math.add = function () {
+  let arr = arguments.toArray();
+  if (arr && arr[0] != undefined) {
+    if (arr[0].constructor == Array) {
+      arr = arr[0];
+    }
+    let num = 0;
+    for (i = 0; i < arr.length; i++) {
+      num += parseFloat(arr[i]);
+    }
+    return (num);
   }
-  return (num);
+  return (NaN);
 }
-F.operate.math.subtract = function (v1, v2) {
-  let num = parseFloat(arguments[0]);
-  for (i = 1; i < arguments.length; i++) {
-    num -= parseFloat(arguments[i]);
+F.operate.math.subtract = function () {
+  let arr = arguments.toArray();
+  if (arr && arr[0] != undefined) {
+    if (arr[0].constructor == Array) {
+      arr = arr[0];
+    }
+    let num = arr[0];
+    for (i = 1; i < arr.length; i++) {
+      num -= parseFloat(arr[i]);
+    }
+    return (num);
   }
-  return (num);
+  return (NaN);
 }
-F.operate.math.multiply = function (v1, v2) {
-  let num = parseFloat(arguments[0]);
-  for (i = 1; i < arguments.length; i++) {
-    num *= parseFloat(arguments[i]);
+F.operate.math.multiply = function () {
+  let arr = arguments.toArray();
+  if (arr && arr[0] != undefined) {
+    if (arr[0].constructor == Array) {
+      arr = arr[0];
+    }
+    let num = arr[0];
+    for (i = 1; i < arr.length; i++) {
+      num *= parseFloat(arr[i]);
+    }
+    return (num);
   }
-  return (num);
+  return (NaN);
 }
-F.operate.math.divide = function (v1, v2) {
-  let num = parseFloat(arguments[0]);
-  for (i = 1; i < arguments.length; i++) {
-    num /= parseFloat(arguments[i]);
+F.operate.math.divide = function () {
+  let arr = arguments.toArray();
+  if (arr && arr[0] != undefined) {
+    if (arr[0].constructor == Array) {
+      arr = arr[0];
+    }
+    let num = arr[0];
+    for (i = 1; i < arr.length; i++) {
+      num /= parseFloat(arr[i]);
+    }
+    return (num);
   }
-  return (num);
+  return (NaN);
 }
 F.operate.math.power = function (v1, v2) {
-  let num = parseFloat(arguments[0]);
-  for (i = 1; i < arguments.length; i++) {
-    num **= parseFloat(arguments[i]);
+  let arr = arguments.toArray();
+  if (arr && arr[0] != undefined) {
+    if (arr[0].constructor == Array) {
+      arr = arr[0];
+    }
+    let num = arr[0];
+    for (i = 1; i < arr.length; i++) {
+      num **= parseFloat(arr[i]);
+    }
+    return (num);
   }
-  return (num);
+  return (NaN);
 }
 F.operate.math.mod = function (v1, v2) {
   return (v1 % v2);
@@ -1147,6 +1194,9 @@ Object.prototype.keyPath = function (path) {
     }
   }
   return (obj);
+}
+Object.prototype.toArray = function () {
+  return (this.values());
 }
 
 
