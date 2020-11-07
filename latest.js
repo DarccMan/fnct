@@ -1041,6 +1041,17 @@ Array.prototype.removeEmpty = function (items) {
   }
   return (arr);
 }
+Array.prototype.shuffle = function () {
+  let arr = this.toArray();
+  let j, x, i;
+  for (i = arr.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    x = arr[i];
+    arr[i] = arr[j];
+    arr[j] = x;
+  }
+  return (arr);
+}
 
 
 /* Object functions */
@@ -1591,7 +1602,7 @@ F.rgb_hex = function (r, g, b, a) {
       r = 0, g = 0, b = 0;
     }
   }
-  if (a) {
+  if (a != undefined) {
     return ("#" + F.toHex(r) + F.toHex(g) + F.toHex(b) + F.toHex(a));
   }
   return ("#" + F.toHex(r) + F.toHex(g) + F.toHex(b));
