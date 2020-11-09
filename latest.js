@@ -2165,6 +2165,13 @@ if (F._data.node) {
       }, time * 1000);
     }));
   }
+  F.getIP = function () {
+    return (new Promise((resolve) => {
+      require("dns").lookup(require("os").hostname(), function (err, add, fam) {
+        resolve(add);
+      });
+    }));
+  }
   for (i = 0; i < F.keys().length; i++) {
     exports[F.keys()[i]] = F.values()[i];
   }
