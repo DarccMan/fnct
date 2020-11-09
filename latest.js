@@ -347,6 +347,19 @@ String.prototype.splitAll = function () {
   }
   return (str);
 }
+String.prototype.strip = function (chars) {
+  let str = this.toString();
+  if (!chars) {
+    chars = F.chars.letters;
+  }
+  str2 = "";
+  for (i = 0; i < str.length; i++) {
+    if (chars.includes(str[i])) {
+      str2 += str[i];
+    }
+  }
+  return (str2);
+}
 
 
 /* Number functions */
