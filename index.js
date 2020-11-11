@@ -1,4 +1,4 @@
-F = {}
+var F = {}
 F._data = {
   jquery: true,
   canvas: true,
@@ -509,19 +509,6 @@ F.highestMultiple = function (num1, num2) {
   }
   return (mult);
 }
-F.sleep = (amount, func) => {
-  if (typeof func == "function") {
-    if (typeof amount == "float") {
-      setTimeout(() => {
-        func();
-      }, amount);
-    } else {
-      console.error("Inbuilt error: Amount is not defined or is not a float");
-    }
-  } else {
-    console.error("Inbuilt error: Function not defined");
-  }
-}
 F.toOne = function (num) {
   if (num > 0) {
     return (-1);
@@ -529,6 +516,13 @@ F.toOne = function (num) {
     return (1);
   }
   return (0);
+}
+F.sleep = function (time) {
+  return (new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, time * 1000);
+  }));
 }
 F.hourFormat = function (num) {
   if (num > 12) {
@@ -930,7 +924,7 @@ F.joinArray = function () {
   return (a);
 }
 F.toArray = function (v) {
-  if (v && typeof v == "object") {
+  if (v && v.constructor == Array) {
     return (v);
   }
   return ([v]);
@@ -1183,10 +1177,10 @@ Object.prototype.sortValues = function () {
 }
 Object.prototype.add = function (key, amount, min) {
   let obj = this;
-  if (!amount && amount < 0) {
+  if (!amount || amount < 0) {
     amount = 1;
   }
-  if (!min && min < 0) {
+  if (!min || min < 0) {
     min = 1;
   }
   if (![undefined, null, ""].includes(obj[key])) {
@@ -2171,13 +2165,6 @@ if (F._data.node) {
       });
     }));
   }
-  F.sleep = function (time) {
-    return (new Promise((resolve) => {
-      setTimeout(() => {
-        resolve();
-      }, time * 1000);
-    }));
-  }
   F.getIP = function () {
     return (new Promise((resolve) => {
       require("dns").lookup(require("os").hostname(), function (err, add, fam) {
@@ -2185,7 +2172,8 @@ if (F._data.node) {
       });
     }));
   }
-  for (i = 0; i < F.keys().length; i++) {
-    exports[F.keys()[i]] = F.values()[i];
-  }
+  // for (i = 0; i < F.keys().length; i++) {
+  //   exports[F.keys()[i]] = F.values()[i];
+  // }
+  module.exports = F;
 }
