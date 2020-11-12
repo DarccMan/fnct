@@ -387,7 +387,7 @@ F.randomSeed = function (inputSeed, lengthOfNumber) {
   }
   var seed = seed.toString();
   var newSeed = 0;
-  var characterArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'y', 'x', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'U', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', ' ', '[', '{', ']', '}', '|', ';', ':', "'", ',', '<', '.', '>', '/', '?', '`', '~', '-', '_', '=', '+'];
+  var characterArray = F.chars.all;
   var longNum = "";
   var counter = 0;
   var accumulator = 0;
