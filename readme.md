@@ -15,7 +15,7 @@ npm install fnct
 
 HTML support still in development
 
-For now, just download [this](https://raw.githubusercontent.com/DarccMan/fnct/master/latest.js) and add this line into your `index.html` file
+For now, just download [this](https://raw.githubusercontent.com/DarccMan/fnct/master/index.js) and add this line into your `index.html` file
 
 ```html
 <script type="text/javascript" src="./functions.js"></script>
