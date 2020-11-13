@@ -27,7 +27,7 @@ Alternatively, just download [this](https://raw.githubusercontent.com/DarccMan/f
 ## Usage
 
 ```js
-const F = require("fnct");
+const F = require("fnct"); // NodeJS (HTML does not need this)
 
 "Random Number: {number}".format({
   number: F.randomInt(2, 6)
