@@ -39,6 +39,7 @@ const F = require("fnct"); // NodeJS (HTML does not need this)
   F.boolToBin(true, false, 1 == 2); // Returns "100";
 })();
 ```
+[View the docs](https://github.com/DarccMan/fnct/blob/master/howto.md#functionsjs)
 
 ## Author
  - Darcy

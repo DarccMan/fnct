@@ -72,30 +72,29 @@ F.center = function (str, amount, fill, fill2, priority) {
   if (str.length > amount) {
     amount = str.length;
   }
-  let amount2 = (amount - str.length) / 2;
-  fillR = amount2.round("c");
-  fillL = amount2.round("c");
-  ret = fill.repeat(fillL) + str + fill2.repeat(fillR);
-  if (ret.length > amount) {
-    if (priority) {
-      fillR--;
-    } else {
-      fillL--;
+  if (str && str.length > 0) {
+    let amount2 = (amount - str.length) / 2;
+    fillR = amount2.round("c");
+    fillL = amount2.round("c");
+    ret = fill.repeat(fillL) + str + fill2.repeat(fillR);
+    if (ret.length > amount) {
+      if (priority) {
+        fillR--;
+      } else {
+        fillL--;
+      }
     }
+    return (fill.repeat(fillL) + str + fill2.repeat(fillR));
   }
-  return (fill.repeat(fillL) + str + fill2.repeat(fillR));
+  return (str);
 }
-F.isJson = function (str) {
+F.isJSON = function (str) {
   try {
     JSON.parse(str);
   } catch {
     return (false);
   }
   return (true);
-}
-F.execute = function (str, args) {
-  func = new Function(str);
-  func(args);
 }
 F.chars = {};
 F.chars.letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
@@ -290,51 +289,13 @@ String.prototype.upper = function () {
   return (this.toString().toUpperCase());
 }
 String.prototype.fill = function (amount, fill, reverse) {
-  let str = this.toString();
-  if (! amount) {
-    amount = 2;
-  }
-  if (! fill) {
-    fill = "0";
-  }
-  if (str || str == "") {
-    if (str.length > amount) {
-      amount = str.length;
-    }
-    str += "";
-    if (reverse) {
-      return (str + (fill.repeat(Math.max(0, amount - str.length))));
-    }
-    return ((fill.repeat(Math.max(0, amount - str.length))) + str);
-  }
-  return (str);
+  return (F.fillStr(this.toString(), amount, fill, reverse));
 }
 String.prototype.center = function (amount, fill, fill2, priority) {
-  let str = this.toString();
-  if (!amount) {
-    amount = 20;
-  }
-  if (!fill) {
-    fill = " ";
-  }
-  if (!fill2) {
-    fill2 = fill;
-  }
-  if (str.length > amount) {
-    amount = str.length;
-  }
-  let amount2 = (amount - str.length) / 2;
-  fillR = amount2.round("c");
-  fillL = amount2.round("c");
-  ret = fill.repeat(fillL) + str + fill2.repeat(fillR);
-  if (ret.length > amount) {
-    if (priority) {
-      fillR--;
-    } else {
-      fillL--;
-    }
-  }
-  return (fill.repeat(fillL) + str + fill2.repeat(fillR));
+  return (F.center(this.toString(), amount, fill, fill2, priority));
+}
+String.prototype.isJSON = function () {
+  return (F.isJSON(this.toString()));
 }
 String.prototype.splitAll = function () {
   let arr = arguments.toArray();
@@ -957,13 +918,13 @@ Array.prototype.sub = function (start, end) {
   }
   arr = arr.slice(start, end);
   if (arr.length <= 1) {
-    if (F.isJson(arr)) {
+    if (F.isJSON(arr)) {
       arr = JSON.parse(arr);
     }
     return (arr);
   }
   for (a = 0; a < arr.length; a++) {
-    if (F.isJson(arr[a])) {
+    if (F.isJSON(arr[a])) {
       arr[a] = JSON.parse(arr[a]);
     }
   }
