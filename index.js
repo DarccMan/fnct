@@ -1385,30 +1385,34 @@ if (F._data.event) {
   }
   F.getKeyCodes = function (data) {
     var keys = [];
-    for (i = 0; i < data.keys.keys().length; i++) {
-      var val = false;
-      for (i2 = 0; i2 < data.keys.values()[i].length; i2++) {
-        if (F.keyDown(data.keys.values()[i][i2])) {
-          val = true;
+    if (data.keys) {
+      for (i = 0; i < data.keys.keys().length; i++) {
+        var val = false;
+        for (i2 = 0; i2 < data.keys.values()[i].length; i2++) {
+          if (F.keyDown(data.keys.values()[i][i2])) {
+            val = true;
+          }
         }
-      }
-      if (val && !(keys.includes(data.keys.keys()[i]))) {
-        keys.push(data.keys.keys()[i]);
-      } else {
-        keys = keys.remove(data.keys.keys()[i]);
+        if (val && !(keys.includes(data.keys.keys()[i]))) {
+          keys.push(data.keys.keys()[i]);
+        } else {
+          keys = keys.remove(data.keys.keys()[i]);
+        }
       }
     }
-    for (i = 0; i < data.buttons.keys().length; i++) {
-      var val = false;
-      for (i2 = 0; i2 < data.buttons.values()[i].length; i2++) {
-        if (F.buttonDown(data.buttons.values()[i][i2])) {
-          val = true;
+    if (data.buttons) {
+      for (i = 0; i < data.buttons.keys().length; i++) {
+        var val = false;
+        for (i2 = 0; i2 < data.buttons.values()[i].length; i2++) {
+          if (F.buttonDown(data.buttons.values()[i][i2])) {
+            val = true;
+          }
         }
-      }
-      if (val && !(keys.includes(data.buttons.keys()[i]))) {
-        keys.push(data.buttons.keys()[i]);
-      } else {
-        keys = keys.remove(data.buttons.keys()[i]);
+        if (val && !(keys.includes(data.buttons.keys()[i]))) {
+          keys.push(data.buttons.keys()[i]);
+        } else {
+          keys = keys.remove(data.buttons.keys()[i]);
+        }
       }
     }
     return (keys);
