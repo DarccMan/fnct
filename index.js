@@ -8,6 +8,7 @@ F._data = {
   version: null,
 };
 
+/* Checking environment */
 try {
   document;
 } catch (err) {
@@ -1952,19 +1953,21 @@ if (F._data.document) {
     F.ls(name, "");
     return (data);
   }
-  F.page = null;
-  if (F._data.jquery) {
-    $("body").ready(() => {
-      F.getPage();
-    })
+  F.getURL = function () {
+    let full = location.pathname.sub(1, -1);
+    let file = full.split("/").sub(-1)[0];
+    let filename = file.split(".")[0];
+    let extension = file.split(".")[1];
+    let dir = full.split("/").sub(0, -2).join("/") + "/";
+    return ({
+      full,
+      filename,
+      file,
+      extension,
+      dir,
+    });
   }
-  F.getPage = function () {
-    page = window.location.pathname.split("/");
-    page = page[page.length - 1];
-    page = page.split(".")[0];
-    F.page = page;
-    return (page);
-  }
+  F.url = F.getURL();
   F.openFile = function (file, func) {
     var input = file.target;
     var reader = new FileReader();
