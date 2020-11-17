@@ -1246,6 +1246,14 @@ F.getCoords = function (x, y, d, a) {
 F.angleAmount = function (angle) {
   return (F.diff((Math.floor(angle / 90) * 90), angle));
 }
+F.getCamPos = function (r, camera, center) {
+  return ({
+    x: (((r.x - c.x) - (center.width / 2)) * (camera.z / 100)) + (center.width / 2),
+    y: (((r.y + c.y) - (center.height / 2)) * (camera.z / 100)) + (center.height / 2),
+    w: r.w * (camera.z / 100),
+    h: r.h * (camera.z / 100),
+  });
+}
 F.vals = {}
 F.val = function (name, condition, func1, func2, start) {
   if (F.vals[name]) {
