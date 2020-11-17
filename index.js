@@ -1247,9 +1247,14 @@ F.angleAmount = function (angle) {
   return (F.diff((Math.floor(angle / 90) * 90), angle));
 }
 F.getCamPos = function (r, camera, center) {
+  if (!center) {
+    if (F._data.document) {
+      center = doc.tag("canvas")[0];
+    }
+  }
   return ({
-    x: (((r.x - c.x) - (center.width / 2)) * (camera.z / 100)) + (center.width / 2),
-    y: (((r.y + c.y) - (center.height / 2)) * (camera.z / 100)) + (center.height / 2),
+    x: (((r.x - camera.x) - (center.width / 2)) * (camera.z / 100)) + (center.width / 2),
+    y: (((r.y + camera.y) - (center.height / 2)) * (camera.z / 100)) + (center.height / 2),
     w: r.w * (camera.z / 100),
     h: r.h * (camera.z / 100),
   });
