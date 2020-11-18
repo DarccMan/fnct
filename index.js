@@ -2065,7 +2065,6 @@ F.interval = (name, func, max, time, overflow) => {
     clearInterval(F.counters[name]);
   }
   var count = 0;
-  console.log(1);
   F.counters[name] = setInterval(() => {
     if (func.constructor == Function) {
       func(count, max);
