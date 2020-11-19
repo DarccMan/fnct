@@ -1252,9 +1252,15 @@ F.getCamPos = function (r, camera, center) {
       center = doc.tag("canvas")[0];
     }
   }
+  if (!center.w && center.width) {
+    center.w = center.width;
+  }
+  if (!center.h && center.height) {
+    center.h = center.height;
+  }
   return ({
-    x: (((r.x - camera.x) - (center.width / 2)) * (camera.z / 100)) + (center.width / 2),
-    y: (((r.y + camera.y) - (center.height / 2)) * (camera.z / 100)) + (center.height / 2),
+    x: (((r.x - camera.x) - (center.w / 2)) * (camera.z / 100)) + (center.w / 2),
+    y: (((r.y + camera.y) - (center.h / 2)) * (camera.z / 100)) + (center.h / 2),
     w: r.w * (camera.z / 100),
     h: r.h * (camera.z / 100),
   });
