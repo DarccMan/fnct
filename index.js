@@ -550,14 +550,26 @@ F.operate.equal.lessEqual = function (v1, v2) {
   return (v1 <= v2);
 }
 F.operate.logic = {};
+F.operate.logic.not = function (v1) {
+  return (!v1);
+}
 F.operate.logic.and = function (v1, v2) {
   return (v1 && v2);
+}
+F.operate.logic.nand = function (v1, v2) {
+  return (!(v1 && v2));
 }
 F.operate.logic.or = function (v1, v2) {
   return (v1 || v2);
 }
-F.operate.logic.not = function (v1) {
-  return (!v1);
+F.operate.logic.nor = function (v1, v2) {
+  return (!(v1 || v2));
+}
+F.operate.logic.xor = function (v1, v2) {
+  return ((v1 || v2 ) && (!(v1 && v2)));
+}
+F.operate.logic.xnor = function (v1, v2) {
+  return (!((v1 || v2 ) && (!(v1 && v2))));
 }
 F.operate.bit = {};
 F.operate.bit.and = function (v1, v2) {
@@ -1052,12 +1064,16 @@ Object.prototype.keys = function () {
 Object.prototype.values = function () {
   return (Object.values(this));
 }
-Object.prototype.sort = function () {
+Object.prototype.sort = function (func) {
   var dict = this;
   var sorted = dict.keys();
-  sorted.sort((a, b) => {
-    return (a - b);
-  });
+  if (func && func.constructor == Function) {
+    sorted.sort(func);
+  } else {
+    sorted.sort((a, b) => {
+      return (a - b);
+    });
+  }
   var tempDict = {};
   for (var i = 0; i < sorted.length; i++) {
     tempDict[sorted[i]] = dict[sorted[i]];
