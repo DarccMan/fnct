@@ -1861,6 +1861,9 @@ if (F._data.document) {
   doc.tag = function () {
     return (doc.getElementsByTagName(arguments[0]));
   }
+  doc.class = function () {
+    return (doc.getElementsByClassName(arguments[0]));
+  }
   doc.create = function () {
     return (doc.createElement(arguments[0]));
   }
