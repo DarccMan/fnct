@@ -1765,7 +1765,7 @@ F.Color = class {
     this.sync();
     if (typeof name == "string" && name.length > 0) {
       this.name = name;
-      Color.presets[name] = this;
+      F.Color.presets[name] = this;
     }
   }
   sync(type) {
