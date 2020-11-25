@@ -1962,12 +1962,14 @@ if (F._data.document) {
     let filename = file.split(".")[0];
     let extension = file.split(".")[1];
     let dir = full.split("/").sub(0, -2).join("/") + "/";
+    let protocol = location.protocol;
     return ({
       full,
       filename,
       file,
       extension,
       dir,
+      protocol
     });
   }
   F.url = F.getURL();
