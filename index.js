@@ -109,12 +109,12 @@ F.chars.all = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", 
 F.chars.cursive = ["𝓪", "𝓫", "𝓬", "𝓭", "𝓮", "𝓯", "𝓰", "𝓱", "𝓲", "𝓳", "𝓴", "𝓵", "𝓶", "𝓷", "𝓸", "𝓹", "𝓺", "𝓻", "𝓼", "𝓽", "𝓾", "𝓿", "𝔀", "𝔁", "𝔂", "𝔃", "𝓐", "𝓑", "𝓒", "𝓓", "𝓔", "𝓕", "𝓖", "𝓗", "𝓘", "𝓙", "𝓚", "𝓛", "𝓜", "𝓝", "𝓞", "𝓟", "𝓠", "𝓡", "𝓢", "𝓣", "𝓤", "𝓥", "𝓦", "𝓧", "𝓨", "𝓩"];
 F.chars.regional = ["🇦", "🇧", "🇨", "🇩", "🇪", "🇫", "🇬", "🇭", "🇮", "🇯", "🇰", "🇱", "🇲", "🇳", "🇴", "🇵", "🇶", "🇷", "🇸", "🇹", "🇺", "🇻", "🇼", "🇽", "🇾", "🇿"];
 F.chars.emoji_digits = ["0️⃣", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣"];
+String.prototype.join = function () {
+  return (this + "");
+}
 String.prototype.sub = function (start, end) {
   var arr = this.split("");
   return (arr.sub(start, end).join(""));
-}
-String.prototype.join = function () {
-  return (this + "");
 }
 String.prototype.format = function () {
   var a = this.toString();
@@ -684,6 +684,9 @@ F.average = function (arr) {
   return (tot / amount);
 }
 
+Number.prototype.join = function () {
+  return (this.toString());
+}
 Number.prototype.in = function (min, max, inclusive) {
   if (inclusive != false) {
     if (this <= max && this >= min) {
