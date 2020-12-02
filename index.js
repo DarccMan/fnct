@@ -1204,6 +1204,18 @@ Object.prototype.toArray = function () {
 
 /* Canvas / game functions */
 F.collide = function (r1, r2, ellipse1, ellipse2) {
+  if (
+    !(
+      r1
+      && r1.x
+      && r1.y
+      && r2
+      && r2.x
+      && r2.y
+    )
+  ) {
+    return (false);
+  }
   switch (F.boolToBin(ellipse1, ellipse2)) {
     case ("00"): {
       return (
