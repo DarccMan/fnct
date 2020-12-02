@@ -1246,7 +1246,7 @@ F.collide = function (r1, r2, ellipse1, ellipse2) {
     case ("11"): {
       var dx = r1.x - r2.x;
       var dy = r1.y - r2.y;
-      var distance = Math.sqrt(dx * dx + dy * dy);
+      var distance = Math.sqrt((dx ** 2) + (dy ** 2));
       return (distance < r1.r + r2.r);
     }; break;
   }
