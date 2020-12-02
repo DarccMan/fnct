@@ -1,6 +1,6 @@
 {
   "name": "fnct",
-  "version": "1.1.20",
+  "version": "1.1.21",
   "description": "Functions.js is a javascript library for NodeJS and html. It is a compilation of various functions and classes that are very useful.",
   "main": "index.js",
   "scripts": {
