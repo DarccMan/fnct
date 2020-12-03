@@ -1982,7 +1982,8 @@ if (F._data.document) {
       file,
       extension,
       dir,
-      protocol
+      protocol,
+      online: protocol.lower()[0] !== "f",
     });
   }
   F.url = F.getURL();
