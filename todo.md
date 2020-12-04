@@ -5,14 +5,13 @@
 <!-- -  -->
 
 # Doing at the moment
-- Adding F.factor function for finding GCF of numbers
+- Transfer repository to organisation (link will change)
 
 # To do
 ## Features
-- Transfer repository to organisation (link will change)
 - Add F.multiple function for finding LCM of numbers
 <!-- ## Bug fixes -->
 <!-- -  -->
 
-<!-- # Reference -->
-<!-- -  -->
+# Reference
+- [Bug fixes / changes](https://github.com/darccman/fnct/commits/master)
