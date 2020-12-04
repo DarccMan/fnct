@@ -464,12 +464,40 @@ F.wrapNum = (num, min, max, iters, fallback) => {
   }
   return (num);
 }
-F.highestMultiple = function (num1, num2) {
-  mult = 0;
-  while ((mult + num2) <= num1) {
-    mult += num2;
+F.min = function () {
+  let args = arguments;
+  if (args[0] && args[0].constructor == Array) {
+    args = args[0];
   }
-  return (mult);
+  min = Infinity;
+  for (m = 0; m < args.length; m++) {
+    if (args[m] < min) {
+      min = args[m];
+    }
+  }
+  return (min == Infinity ? NaN : min);
+}
+F.factor = function () {
+  let args = arguments;
+  if (args[0] && args[0].constructor == Array) {
+    args = args[0];
+  }
+  min = F.min(Array.from(args));
+  if (args.length > 1 && min && min != Infinity) {
+    for (fact = (min / 2).round(0, "f"); fact > 0; fact--) {
+      val = true;
+      for (a = 0; a < args.length; a++) {
+        if ((args[a] % fact) != 0) {
+          val = false;
+        }
+      }
+      if (val) {
+        break;
+      }
+    }
+    return (fact);
+  }
+  return (NaN);
 }
 F.toOne = function (num) {
   if (num > 0) {
@@ -492,7 +520,7 @@ F.hourFormat = function (num) {
   }
   return (num);
 }
-F.addOrd = (num) => {
+F.addOrdinal = (num) => {
   num = parseInt(num);
   if (![NaN, null, undefined, ""].includes(num)) {
     if (typeof num == "number") {
@@ -516,7 +544,7 @@ F.addOrd = (num) => {
 F.dec_bin = function (dec) {
   return ((dec >>> 0).toString(2));
 }
-F.boolToBin = function () {
+F.bool_bin = function () {
   let bin = "";
   for (a = 0; a < arguments.length; a++) {
     bin += (arguments[a]) ? "1" : "0";
@@ -1223,7 +1251,7 @@ F.collide = function (r1, r2, ellipse1, ellipse2) {
   ) {
     return (false);
   }
-  switch (F.boolToBin(ellipse1, ellipse2)) {
+  switch (F.bool_bin(ellipse1, ellipse2)) {
     case ("00"): {
       return (
         r1.x + r1.w > r2.x &&
