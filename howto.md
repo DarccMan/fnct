@@ -2,7 +2,7 @@
 
 ## Installation
 
-[How to install](https://github.com/DarccMan/fnct#installation)
+[How to install](./readme.md/#installation)
 
 ## Usage
 

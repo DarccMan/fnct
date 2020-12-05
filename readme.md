@@ -18,7 +18,7 @@ Add this line into your `index.html` file
 <script type="text/javascript" src="https://darccman.github.io/fnct/index.js"></script>
 ```
 
-Alternatively, just download [this](https://raw.githubusercontent.com/DarccMan/fnct/master/index.js) and add this line into your `index.html` file
+Alternatively, just download [this](https://fnctjs.github.io/index.js) and add this line into your `index.html` file
 
 ```html
 <script type="text/javascript" src="./functions.js"></script>
@@ -39,7 +39,7 @@ const F = require("fnct"); // NodeJS (HTML does not need this)
   F.boolToBin(true, false, 1 == 2); // Returns "100";
 })();
 ```
-[View the docs](https://github.com/DarccMan/fnct/blob/master/howto.md#how-to-use-functionsjs) (not finished)
+[View the docs](./howto.md#how-to-use-functionsjs) (not finished)
 
 ## Author
  - Darcy
