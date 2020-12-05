@@ -11,11 +11,17 @@ Use [Node Package Manager](https://www.npmjs.com/) to install
 npm install fnct
 ```
 
+Then add this line to your `index.js` file
+
+```js
+const F = require("fnct");
+```
+
 ### HTML / Browser
 
 Add this line into your `index.html` file
 ```html
-<script type="text/javascript" src="https://darccman.github.io/fnct/index.js"></script>
+<script type="text/javascript" src="https://fnctjs.github.io/index.js"></script>
 ```
 
 Alternatively, just download [this](https://fnctjs.github.io/index.js) and add this line into your `index.html` file
