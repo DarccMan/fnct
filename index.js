@@ -220,7 +220,9 @@ String.prototype.censor = function (amount, char) {
 String.prototype.capWords = function () {
   let str = this.split(" ");
   for (j = 0; j < str.length; j++) {
-    str[j] = str[j][0].toUpperCase() + str[j].sub(1, -1);
+    if (str[j] && str[j][0]) {
+      str[j] = str[j][0].toUpperCase() + str[j].sub(1, -1);
+    }
   }
   return (str.join(" "));
 }
