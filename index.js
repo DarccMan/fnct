@@ -1073,6 +1073,9 @@ Array.prototype.shuffle = function () {
   }
   return (arr);
 }
+Array.prototype.insert = function (index, item) {
+  this.splice(index, 0, item);
+};
 
 
 /* Object functions */
