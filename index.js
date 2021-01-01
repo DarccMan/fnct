@@ -1649,6 +1649,9 @@ F.getColor = function (arr, add, type) {
 }
 F.hex_rgb = function (hex) {
   var c;
+  if (!/^#/.test(hex)) {
+    hex = "#" + hex;
+  }
   if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
     c = hex.substring(1).split("");
     if (c.length == 3) {
@@ -1658,7 +1661,20 @@ F.hex_rgb = function (hex) {
     return ({
       r: (c >> 16) & 255,
       g: (c >> 8) & 255,
-      b: c & 255
+      b: c & 255,
+    });
+  }
+  if (/^#([A-Fa-f0-9]{4}){1,2}$/.test(hex)) {
+    c = hex.substring(1).split("");
+    if (c.length == 3) {
+      c = [c[0], c[0], c[1], c[1], c[2], c[2]];
+    }
+    c = "0x" + c.join("");
+    return ({
+      r: (c >> 24) & 255,
+      g: (c >> 16) & 255,
+      b: (c >> 8) & 255,
+      a: c & 255,
     });
   }
   console.error("Inbuilt error: invalid hex code: {0}".format(hex));
