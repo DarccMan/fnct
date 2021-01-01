@@ -2055,24 +2055,42 @@ if (F._data.document) {
     F.ls(name, "");
     return (data);
   }
-  F.getURL = function () {
-    let full = location.pathname.sub(1, -1);
-    let file = full.split("/").sub(-1)[0];
-    let filename = file.split(".")[0];
-    let extension = file.split(".")[1];
-    let dir = full.split("/").sub(0, -2).join("/") + "/";
-    let protocol = location.protocol;
-    return ({
-      full,
-      filename,
+  F.getUrl = function () {
+    full = location.href;
+    file = full.split("/").sub(-1)[0];
+    online = location.protocol[0].lower() !== "f";
+    domain = online ? (
+      full.split("/").sub(2)[0]
+    ) : null;
+    let url = {
+      href: full,
+      protocol: location.protocol,
+      online,
       file,
-      extension,
-      dir,
-      protocol,
-      online: protocol.lower()[0] !== "f",
-    });
+      filename: file.split(".").sub(0, -2).join("."),
+      extension: file.split(".").sub(-1)[0],
+      domain,
+      subdomain: domain ? (
+        domain.split(".").sub(0)
+      ) : null,
+      suffix: domain ? (
+        domain.split(":").sub(0)[0].split(".").sub(2, -1).join(".")
+      ) : null,
+      port: domain ? (
+        (domain.split(":").length > 1) ? (
+          domain.split(":").sub(-1)
+        ) : null
+      ) : null,
+      secure: online ? (
+        location.protocol.sub(-2)[0] == "s"
+      ) : null,
+      path: full.split("/").sub(3, -2).join("/"),
+      query: full.split("?").sub(1, -1).join("?"),
+    };
+    return (url);
   }
   F.url = F.getURL();
+  console.log(F.url);
   F.openFile = function (file, func) {
     var input = file.target;
     var reader = new FileReader();
