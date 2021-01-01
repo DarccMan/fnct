@@ -2106,7 +2106,6 @@ if (F._data.document) {
     return (url);
   }
   F.url = F.getUrl();
-  console.log(F.url);
   F.openFile = function (file, func) {
     var input = file.target;
     var reader = new FileReader();
