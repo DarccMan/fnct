@@ -973,7 +973,7 @@ Array.prototype.sub = function (start, end) {
     if (F.isJSON(arr)) {
       arr = JSON.parse(arr);
     }
-    return (arr);
+    return (arr[0]);
   }
   for (a = 0; a < arr.length; a++) {
     if (F.isJSON(arr[a])) {
@@ -2057,10 +2057,10 @@ if (F._data.document) {
   }
   F.getUrl = function () {
     full = location.href;
-    file = full.split("/").sub(-1)[0];
+    file = full.split("/").sub(-1);
     online = location.protocol[0].lower() !== "f";
     domain = online ? (
-      full.split("/").sub(2)[0]
+      full.split("/").sub(2)
     ) : null;
     let url = {
       href: full,
@@ -2068,13 +2068,13 @@ if (F._data.document) {
       online,
       file,
       filename: file.split(".").sub(0, -2).join("."),
-      extension: file.split(".").sub(-1)[0],
+      extension: file.split(".").sub(-1),
       domain,
       subdomain: domain ? (
         domain.split(".").sub(0)
       ) : null,
       suffix: domain ? (
-        domain.split(":").sub(0)[0].split(".").sub(2, -1).join(".")
+        domain.split(":").sub(0).split(".").sub(2, -1).join(".")
       ) : null,
       port: domain ? (
         (domain.split(":").length > 1) ? (
@@ -2082,10 +2082,10 @@ if (F._data.document) {
         ) : null
       ) : null,
       secure: online ? (
-        location.protocol.sub(-2)[0] == "s"
+        location.protocol.sub(-2) == "s"
       ) : null,
-      path: full.split("?").sub(0)[0].split("/").sub(3, -2).join("/"),
-      filepath: full.split("?").sub(0)[0].split("/").sub(3, -1).join("/"),
+      path: full.split("?").sub(0).split("/").sub(3, -2).join("/"),
+      filepath: full.split("?").sub(0).split("/").sub(3, -1).join("/"),
       query: full.split("?").sub(1, -1).join("?"),
     };
     return (url);
