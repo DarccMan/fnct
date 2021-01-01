@@ -970,10 +970,11 @@ Array.prototype.sub = function (start, end) {
   }
   arr = arr.slice(start, end);
   if (arr.length <= 1) {
+    arr = arr[0];
     if (F.isJSON(arr)) {
       arr = JSON.parse(arr);
     }
-    return (arr[0]);
+    return (arr);
   }
   for (a = 0; a < arr.length; a++) {
     if (F.isJSON(arr[a])) {
@@ -2057,11 +2058,24 @@ if (F._data.document) {
   }
   F.getUrl = function () {
     full = location.href;
-    file = full.split("/").sub(-1);
+    file = full.split("?").sub(0).split("/").sub(-1);
     online = location.protocol[0].lower() !== "f";
-    domain = online ? (
-      full.split("/").sub(2)
-    ) : null;
+    domain = null;
+    if (online) {
+      domain = full.split("/").sub(2)
+    }
+    queryRaw = full.split("?").sub(1, -1);
+    query = [];
+    if (queryRaw) {
+      queryRaw = queryRaw.join("?");
+      temp = queryRaw.split("&");
+      for (i = 0; i < temp.length; i++) {
+        query[temp[i].split("=")[0]] = temp[i].split("=").sub(1).join("=");
+      }
+      delete temp;
+    } else {
+      queryRaw = "";
+    }
     let url = {
       href: full,
       protocol: location.protocol,
@@ -2086,11 +2100,12 @@ if (F._data.document) {
       ) : null,
       path: full.split("?").sub(0).split("/").sub(3, -2).join("/"),
       filepath: full.split("?").sub(0).split("/").sub(3, -1).join("/"),
-      query: full.split("?").sub(1, -1).join("?"),
+      queryRaw,
+      query,
     };
     return (url);
   }
-  F.url = F.getURL();
+  F.url = F.getUrl();
   console.log(F.url);
   F.openFile = function (file, func) {
     var input = file.target;
