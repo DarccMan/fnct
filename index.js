@@ -2084,7 +2084,8 @@ if (F._data.document) {
       secure: online ? (
         location.protocol.sub(-2)[0] == "s"
       ) : null,
-      path: full.split("/").sub(3, -2).join("/"),
+      path: full.split("?").sub(0)[0].split("/").sub(3, -2).join("/"),
+      filepath: full.split("?").sub(0)[0].split("/").sub(3, -1).join("/"),
       query: full.split("?").sub(1, -1).join("?"),
     };
     return (url);
