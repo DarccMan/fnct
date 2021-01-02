@@ -1423,6 +1423,20 @@ if (F._data.canvas) {
       }
     }
   }
+  HTMLCanvasElement.prototype.changeRes = function (amount) {
+    this.style.width = this.width + "px";
+    this.style.height = this.height + "px";
+    this.width = parseFloat(this.style.width) * amount;
+    this.height = parseFloat(this.style.height) * amount;
+  }
+  HTMLCanvasElement.prototype.initialize = function () {
+    this.__defineGetter__("w", () => {
+      return (this.width);
+    });
+    this.__defineGetter__("h", () => {
+      return (this.height);
+    });
+  }
   CanvasRenderingContext2D.prototype.fillCanvas = function (color) {
     prevColor = this.fillStyle;
     if ([null, undefined, ""].includes(color)) {
@@ -1451,6 +1465,9 @@ if (F._data.canvas) {
     }
     if (h < 2 * r) {
       r = h / 2;
+    }
+    if (r == undefined) {
+      r = 4;
     }
     this.beginPath();
     this.moveTo(x + r, y);
