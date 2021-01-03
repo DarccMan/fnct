@@ -1466,9 +1466,6 @@ if (F._data.canvas) {
     if (h < 2 * r) {
       r = h / 2;
     }
-    if (r == undefined) {
-      r = 4;
-    }
     this.beginPath();
     this.moveTo(x + r, y);
     this.arcTo(x + w, y, x + w, y + h, r);
@@ -1483,6 +1480,9 @@ if (F._data.canvas) {
     }
     if (h < 2 * r) {
       r = h / 2;
+    }
+    if (r == undefined) {
+      r = 4;
     }
     this.beginPath();
     this.moveTo(x + r, y);
