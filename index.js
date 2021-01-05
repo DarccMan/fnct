@@ -1626,17 +1626,22 @@ if (F._data.event) {
     F.touch.down = true;
     F.touch.x = e.touches[0].clientX;
     F.touch.y = e.touches[0].clientY;
+    console.log(1);
     F.touch.onCanvas = F.onCanvas(e.touches[0]);
+    F.buttonsDown[0] = true;
   }, false);
   F.event.touchend = addEventListener("touchend", (e) => {
     F.touch.unknown = false;
     F.touch.down = false;
+    F.buttonsDown[0] = false;
   }, false);
   F.event.touchmove = addEventListener("touchmove", (e) => {
     F.touch.unknown = false;
     F.touch.x = e.touches[0].clientX;
     F.touch.y = e.touches[0].clientY;
     F.touch.onCanvas = F.onCanvas(e.touches[0]);
+    F.mouse.x = e.touches[0].clientX;
+    F.mouse.y = e.touches[0].clientY;
   }, false);
 }
 
@@ -2100,8 +2105,8 @@ if (F._data.document) {
       protocol: location.protocol,
       online,
       file,
-      filename: file ? file.split(".").sub(0, -2).join(".") : "",
-      extension: file ? file.split(".").sub(-1) : "",
+      filename: file && file.split ? file.split(".").sub(0, -2).join(".") : "",
+      extension: file && file.split ? file.split(".").sub(-1) : "",
       domain,
       subdomain: domain ? (
         domain.split(".").sub(0)
