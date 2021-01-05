@@ -2102,8 +2102,8 @@ if (F._data.document) {
       protocol: location.protocol,
       online,
       file,
-      filename: file.split(".").sub(0, -2).join("."),
-      extension: file.split(".").sub(-1),
+      filename: file ? file.split(".").sub(0, -2).join(".") : "",
+      extension: file ? file.split(".").sub(-1) : "",
       domain,
       subdomain: domain ? (
         domain.split(".").sub(0)
