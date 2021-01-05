@@ -1593,6 +1593,8 @@ if (F._data.event) {
     return {
       x: e.clientX - 11,
       y: e.clientY - 11,
+      w: 1,
+      h: 1,
     };
   }
   F.onCanvas = function (e) {
