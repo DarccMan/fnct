@@ -974,14 +974,14 @@ Array.prototype.sub = function (start, end) {
     if (F.isJSON(arr)) {
       arr = JSON.parse(arr);
     }
-    return (arr);
+    return (arr ? arr : []);
   }
   for (a = 0; a < arr.length; a++) {
     if (F.isJSON(arr[a])) {
       arr[a] = JSON.parse(arr[a]);
     }
   }
-  return (arr);
+  return (arr ? arr : []);
 }
 Array.prototype.append = function (item) {
   this.push(item);
@@ -2127,6 +2127,7 @@ if (F._data.document) {
     return (url);
   }
   F.url = F.getUrl();
+  console.log(F.url);
   F.openFile = function (file, func) {
     var input = file.target;
     var reader = new FileReader();
