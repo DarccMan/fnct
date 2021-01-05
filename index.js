@@ -1576,6 +1576,8 @@ if (F._data.event) {
   F.mouse = {
     x: null,
     y: null,
+    w: 1,
+    h: 1,
     onCanvas: false,
     unknown: true,
   };
