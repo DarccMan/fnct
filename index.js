@@ -1346,7 +1346,6 @@ F.val = function (name, condition, func1, func2, start) {
     F.vals[name] = start;
   }
   if (condition) {
-    // console.log(0);
     if (F.vals[name]) {
       if (func1 && typeof func1 == "function") {
         func1();
@@ -1362,7 +1361,6 @@ F.val = function (name, condition, func1, func2, start) {
     }
     F.vals[name] = false;
   } else {
-    // console.log(1);
     F.vals[name] = true;
     return (false);
   }
@@ -2127,7 +2125,6 @@ if (F._data.document) {
     return (url);
   }
   F.url = F.getUrl();
-  console.log(F.url);
   F.openFile = function (file, func) {
     var input = file.target;
     var reader = new FileReader();
