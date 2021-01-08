@@ -393,15 +393,7 @@ F.randomSeed = function (inputSeed, lengthOfNumber) {
   return (output.sub(20, -1));
 }
 F.round = function (num, dec, type) {
-  switch (type) {
-    case (1): {
-      return (Math.floor(num * (10 ** dec))) / (10 ** dec);
-    }
-    case (2): {
-      return (Math.ceil(num * (10 ** dec))) / (10 ** dec);
-    }
-  }
-  return (Math.round(num * (10 ** dec))) / (10 ** dec);
+  return (num.round(dec, type));
 }
 F.range = function (min, max) {
   if ([null, undefined].includes(max)) {
@@ -420,18 +412,7 @@ F.diff = function (n1, n2) {
   return (Math.abs(n1 - n2));
 }
 F.setBorder = function (num, min, max) {
-  if ([null, undefined, ""].includes(min)) {
-    min = 0;
-  }
-  if ([null, undefined, ""].includes(max)) {
-    max = 100;
-  }
-  if (num > max) {
-    num = max;
-  } else if (num < min) {
-    num = min;
-  }
-  return (num);
+  return (num.setBorder(min, max));
 }
 F.wrapNum = (num, min, max, iters, fallback) => {
   if ([null, undefined, "", 0].includes(iters)) {
@@ -502,12 +483,7 @@ F.factor = function () {
   return (NaN);
 }
 F.toOne = function (num) {
-  if (num > 0) {
-    return (-1);
-  } else if (num < 0) {
-    return (1);
-  }
-  return (0);
+  return (num.toOne())
 }
 F.sleep = function (time) {
   return (new Promise((resolve) => {
@@ -523,25 +499,7 @@ F.hourFormat = function (num) {
   return (num);
 }
 F.addOrdinal = (num) => {
-  num = parseInt(num);
-  if (![NaN, null, undefined, ""].includes(num)) {
-    if (typeof num == "number") {
-      var ord = "th";
-      switch (parseInt((num + "").sub(-1))) {
-        case (1): {
-          ord = "st";
-        }; break;
-        case (2): {
-          ord = "nd";
-        }; break;
-        case (3): {
-          ord = "rd";
-        }; break;
-      }
-      return (num + ord);
-    }
-  }
-  return (num);
+  return (num.addOrdinal());
 }
 F.dec_bin = function (dec) {
   return ((dec >>> 0).toString(2));
@@ -552,6 +510,13 @@ F.bool_bin = function () {
     bin += (arguments[a]) ? "1" : "0";
   }
   return (bin)
+}
+F.bin_bool = function () {
+  let arr = [];
+  for (a = 0; a < arguments.length; a++) {
+    arr.push(arguments ? 1 : 0);
+  }
+  return (arguments);
 }
 F.operate = {};
 F.operate.equal = {};
@@ -702,7 +667,8 @@ F.splitDivide = function (num, amount) {
   arr.push(num);
   return (arr);
 }
-F.average = function (arr) {
+F.average = {};
+F.average.mean = function (arr) {
   let tot = 0;
   let amount = 0;
   for (i = 0; i < arr.length; i++) {
@@ -786,7 +752,7 @@ Number.prototype.toBin = function () {
   let dec = parseFloat(this);
   return ((dec >>> 0).toString(2));
 }
-Number.prototype.addOrd = () => {
+Number.prototype.addOrdinal = () => {
   num = parseInt(this);
   if (![NaN, null, undefined, ""].includes(num)) {
     if (typeof num == "number") {
