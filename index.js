@@ -1592,7 +1592,6 @@ if (F._data.event) {
     F.touch.down = true;
     F.touch.x = e.touches[0].clientX;
     F.touch.y = e.touches[0].clientY;
-    console.log(1);
     F.touch.onCanvas = F.onCanvas(e.touches[0]);
     F.buttonsDown[0] = true;
   }, false);
