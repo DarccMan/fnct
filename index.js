@@ -517,6 +517,12 @@ F.bin_bool = function () {
   }
   return (arguments);
 }
+F.parseBoolean = function (bool) {
+  if (bool == "false" || bool == "0") {
+    return (false);
+  }
+  return (!!bool);
+}
 F.operate = {};
 F.operate.equal = {};
 F.operate.equal.value = function (v1, v2) {
