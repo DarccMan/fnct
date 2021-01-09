@@ -29,7 +29,6 @@ if (F._data.document) {
     $;
   } catch (err) {
     F._data.jquery = false;
-    console.warn("jQuery is not detected. For full functionality, add '{0}' to your html page.\nAlternatively, you could run F.addJquery() on startup".replace("{0}", '<script src="http://code.jquery.com/jquery-latest.min.js"></script>'));
   }
 }
 try {
@@ -2007,9 +2006,6 @@ if (F._data.document) {
     } else {
       document.getElementsByTagName('head')[0].appendChild(style);
     }
-  }
-  F.addJquery = function () {
-    doc.head.innerHTML += '<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>';
   }
   F.newElement = (v = {tag, id, parent, content}) => {
     element = doc.createElement(v.tag);
