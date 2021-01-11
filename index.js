@@ -1262,7 +1262,7 @@ F.collide = function (r1, r2, ellipse1, ellipse2) {
       return (distance < r1.r + r2.r);
     }; break;
   }
-  return (false);
+  return (null);
 }
 F.collide3d = function (r1, r2) {
   return (
@@ -1547,6 +1547,7 @@ if (F._data.event) {
     y: null,
     w: 1,
     h: 1,
+    r: 1,
     onCanvas: false,
     unknown: true,
   };
@@ -1564,6 +1565,7 @@ if (F._data.event) {
       y: e.clientY - 11,
       w: 1,
       h: 1,
+      r: 1,
     };
   }
   F.onCanvas = function (e) {
