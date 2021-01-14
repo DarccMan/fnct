@@ -1964,6 +1964,7 @@ if (F._data.document) {
     return (doc.createElement(arguments[0]));
   }
   doc.head = doc.tag("head")[0];
+  doc.doc = doc.documentElement;
   doc.html = doc.tag("html")[0];
   F.loadScript = function (src, id, head, type) {
     if (id == null) {
