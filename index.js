@@ -438,7 +438,7 @@ F.wrapNum = (num, min, max, iters, fallback) => {
     }
   }
   if (!(num <= max && num >= min)) {
-    if (fallback != true) {
+    if (fallback !== true) {
       num = max;
     } else {
       num = min;
@@ -689,7 +689,7 @@ Number.prototype.join = function () {
   return (this.toString());
 }
 Number.prototype.in = function (min, max, inclusive) {
-  if (inclusive != false) {
+  if (inclusive !== false) {
     if (this <= max && this >= min) {
       return (true);
     }
@@ -967,18 +967,20 @@ Array.prototype.output = function (s1) {
   }
   return (otp);
 }
-Array.prototype.remove = function (item) {
-  let arr = this;
-  let index = arr.indexOf(item);
-  if (index > -1) {
-    arr.splice(index, 1);
-  }
-  return (arr);
-}
-Array.prototype.removeIndex = function (index) {
-  let arr = this;
-  if (index > -1) {
-    arr.splice(index, 1);
+Array.prototype.remove = function (item, useIndex, onlyOne) {
+  let arr = Array.from(this);
+  for (i = 0; i < ((onlyOne || useIndex) ? 1 : 1000); i++) {
+    if (!useIndex) {
+      if (!arr.includes(item)) {
+        continue;
+      }
+      index = arr.indexOf(item);
+    } else {
+      index = item;
+    }
+    if (index > -1) {
+      arr.splice(index, 1);
+    }
   }
   return (arr);
 }
@@ -1236,7 +1238,7 @@ F.collide = function (r1, r2, ellipse1, ellipse2) {
         r2.y + r2.h > r1.y &&
         r2.y < r1.y + r1.h
       );
-    }; break;
+    };
     case ("10"): {
       var testX = r2.x;
       var testY = r2.y;
@@ -1254,13 +1256,13 @@ F.collide = function (r1, r2, ellipse1, ellipse2) {
       let distY = r2.y - testY;
       distance = Math.sqrt((distX * distX) + (distY * distY));
       return (distance <= r2.r);
-    }; break;
+    };
     case ("11"): {
       var dx = r1.x - r2.x;
       var dy = r1.y - r2.y;
       var distance = Math.sqrt((dx ** 2) + (dy ** 2));
       return (distance < r1.r + r2.r);
-    }; break;
+    };
   }
   return (null);
 }
@@ -2070,7 +2072,7 @@ if (F._data.document) {
     } else {
       queryRaw = "";
     }
-    let url = {
+    return ({
       href: full,
       protocol: location.protocol,
       online,
@@ -2096,8 +2098,7 @@ if (F._data.document) {
       filepath: full.split("?").sub(0).split("/").sub(3, -1).join("/"),
       queryRaw,
       query,
-    };
-    return (url);
+    });
   }
   F.url = F.getUrl();
   F.openFile = function (file, func) {
