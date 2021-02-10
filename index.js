@@ -111,9 +111,9 @@ F.chars.emoji_digits = "0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣
 String.prototype.join = function () {
   return (this + "");
 }
-String.prototype.sub = function (start, end) {
+String.prototype.s = function (start, end) {
   var arr = this.split("");
-  return (arr.sub(start, end).join(""));
+  return (arr.s(start, end).join(""));
 }
 String.prototype.format = function () {
   var a = this.toString();
@@ -198,7 +198,7 @@ String.prototype.truncate = function (amount, end) {
     end = "";
   }
   if (str.length > amount) {
-    str = str.sub(0, amount) + end;
+    str = str.s(0, amount) + end;
   }
   return (str);
 }
@@ -212,7 +212,7 @@ String.prototype.censor = function (amount, char) {
     char = "*";
   }
   if (str.length > amount) {
-    str = str.sub(0, amount) + char.repeat(str.length - amount);
+    str = str.s(0, amount) + char.repeat(str.length - amount);
   }
   return (str);
 }
@@ -220,7 +220,7 @@ String.prototype.capWords = function () {
   let str = this.split(" ");
   for (j = 0; j < str.length; j++) {
     if (str[j] && str[j][0]) {
-      str[j] = str[j][0].toUpperCase() + str[j].sub(1, -1);
+      str[j] = str[j][0].toUpperCase() + str[j].s(1, -1);
     }
   }
   return (str.join(" "));
@@ -235,7 +235,7 @@ String.prototype.replaceCase = function (text, replace, once) {
   while (true) {
     index = str.toLowerCase().indexOf(text);
     if (index != -1) {
-      str = str.sub(0, index) + replace + str.sub(index + text.length, -1);
+      str = str.s(0, index) + replace + str.s(index + text.length, -1);
     } else {
       break;
     }
@@ -305,7 +305,7 @@ String.prototype.splitAll = function () {
       arr = arr[0];
     }
     let str = this.toString();
-    str = str.replaceMany(arr.sub(1, -1), arr[0]);
+    str = str.replaceMany(arr.s(1, -1), arr[0]);
     return (str.split(arr[0]));
   }
   return (str);
@@ -389,7 +389,7 @@ F.randomSeed = function (inputSeed, lengthOfNumber) {
     counter++;
     accumulator = accumulator + parseInt(newSeed.charAt(counter));
   }
-  return (output.sub(20, -1));
+  return (output.s(20, -1));
 }
 F.round = function (num, dec, type) {
   return (num.round(dec, type));
@@ -762,7 +762,7 @@ Number.prototype.addOrdinal = () => {
   if (![NaN, null, undefined, ""].includes(num)) {
     if (typeof num == "number") {
       var ord = "th";
-      switch (parseInt((num + "").sub(-1))) {
+      switch (parseInt((num + "").s(-1))) {
         case (1): {
           ord = "st";
         }; break;
@@ -886,7 +886,7 @@ Date.prototype.getFullDate = function () {
   return ([
     this.getDate(),
     this.getMonth() + 1,
-    this.getFullYear().toString().sub(-2, -1),
+    this.getFullYear().toString().s(-2, -1),
   ].join("/"));
 }
 Date.prototype.getDayOfYear = function () {
@@ -914,7 +914,7 @@ F.toArray = function (v) {
   }
   return ([v]);
 }
-Array.prototype.sub = function (start, end) {
+Array.prototype.s = function (start, end) {
   var arr = this;
   for (a = 0; a < arr.length; a++) {
     if (typeof arr[a] != "string") {
@@ -1149,7 +1149,7 @@ Object.prototype.getFromValue = function (value) {
 Object.prototype.capKeys = function () {
   obj = {};
   for (i2 = 0; i2 < this.keys().length; i2++) {
-    obj[this.keys()[i2][0].toUpperCase() + this.keys()[i2].sub(1, -1).toLowerCase()] = this.values()[i2];
+    obj[this.keys()[i2][0].toUpperCase() + this.keys()[i2].s(1, -1).toLowerCase()] = this.values()[i2];
   }
   return (obj);
 }
@@ -1815,7 +1815,7 @@ F.Color = class {
         }
       }
     }
-    this.priority = this.priority.sub(0, 3);
+    this.priority = this.priority.s(0, 3);
     this.color = color;
     if (!this.color) {
       this.color = F.randomRgb();
@@ -2054,19 +2054,19 @@ if (F._data.document) {
   }
   F.getUrl = function () {
     full = location.href;
-    file = full.split("?").sub(0).split("/").sub(-1);
+    file = full.split("?").s(0).split("/").s(-1);
     online = location.protocol[0].lower() !== "f";
     domain = null;
     if (online) {
-      domain = full.split("/").sub(2)
+      domain = full.split("/").s(2)
     }
-    queryRaw = full.split("?").sub(1, -1);
+    queryRaw = full.split("?").s(1, -1);
     query = [];
     if (queryRaw) {
       queryRaw = queryRaw.join("?");
       temp = queryRaw.split("&");
       for (i = 0; i < temp.length; i++) {
-        query[temp[i].split("=")[0]] = temp[i].split("=").sub(1).join("=");
+        query[temp[i].split("=")[0]] = temp[i].split("=").s(1).join("=");
       }
       delete temp;
     } else {
@@ -2077,25 +2077,25 @@ if (F._data.document) {
       protocol: location.protocol,
       online,
       file,
-      filename: file && file.split ? file.split(".").sub(0, -2).join(".") : "",
-      extension: file && file.split ? file.split(".").sub(-1) : "",
+      filename: file && file.split ? file.split(".").s(0, -2).join(".") : "",
+      extension: file && file.split ? file.split(".").s(-1) : "",
       domain,
       subdomain: domain ? (
-        domain.split(".").sub(0)
+        domain.split(".").s(0)
       ) : null,
       suffix: domain ? (
-        domain.split(":").sub(0).split(".").sub(2, -1).join(".")
+        domain.split(":").s(0).split(".").s(2, -1).join(".")
       ) : null,
       port: domain ? (
         (domain.split(":").length > 1) ? (
-          domain.split(":").sub(-1)
+          domain.split(":").s(-1)
         ) : null
       ) : null,
       secure: online ? (
-        location.protocol.sub(-2) == "s"
+        location.protocol.s(-2) == "s"
       ) : null,
-      path: full.split("?").sub(0).split("/").sub(3, -2).join("/"),
-      filepath: full.split("?").sub(0).split("/").sub(3, -1).join("/"),
+      path: full.split("?").s(0).split("/").s(3, -2).join("/"),
+      filepath: full.split("?").s(0).split("/").s(3, -1).join("/"),
       queryRaw,
       query,
     });
