@@ -40,10 +40,10 @@ try {
 
 /* String functions */
 F.fillStr = function (str, amount, fill, reverse) {
-  if (! amount) {
+  if (!amount) {
     amount = 2;
   }
-  if (! fill) {
+  if (!fill) {
     fill = "0";
   }
   if (str || str == "") {
@@ -108,6 +108,261 @@ F.chars.all = "0123456789abcdefghijklmnopqrstuvwyxzABCDEFGHIJKLMNOPQURSTUVWXYZ!@
 F.chars.cursive = "𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩".split("");
 F.chars.regional = "🇦🇧🇨🇩🇪🇫🇬🇭🇮🇯🇰🇱🇲🇳🇴🇵🇶🇷🇸🇹🇺🇻🇼🇽🇾🇿".split("");
 F.chars.emoji_digits = "0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣".split("");
+F.chars.htmlEscape = {
+  34: 'quot',
+  38: 'amp',
+  39: 'apos',
+  60: 'lt',
+  62: 'gt',
+  160: 'nbsp',
+  161: 'iexcl',
+  162: 'cent',
+  163: 'pound',
+  164: 'curren',
+  165: 'yen',
+  166: 'brvbar',
+  167: 'sect',
+  168: 'uml',
+  169: 'copy',
+  170: 'ordf',
+  171: 'laquo',
+  172: 'not',
+  173: 'shy',
+  174: 'reg',
+  175: 'macr',
+  176: 'deg',
+  177: 'plusmn',
+  178: 'sup2',
+  179: 'sup3',
+  180: 'acute',
+  181: 'micro',
+  182: 'para',
+  183: 'middot',
+  184: 'cedil',
+  185: 'sup1',
+  186: 'ordm',
+  187: 'raquo',
+  188: 'frac14',
+  189: 'frac12',
+  190: 'frac34',
+  191: 'iquest',
+  192: 'Agrave',
+  193: 'Aacute',
+  194: 'Acirc',
+  195: 'Atilde',
+  196: 'Auml',
+  197: 'Aring',
+  198: 'AElig',
+  199: 'Ccedil',
+  200: 'Egrave',
+  201: 'Eacute',
+  202: 'Ecirc',
+  203: 'Euml',
+  204: 'Igrave',
+  205: 'Iacute',
+  206: 'Icirc',
+  207: 'Iuml',
+  208: 'ETH',
+  209: 'Ntilde',
+  210: 'Ograve',
+  211: 'Oacute',
+  212: 'Ocirc',
+  213: 'Otilde',
+  214: 'Ouml',
+  215: 'times',
+  216: 'Oslash',
+  217: 'Ugrave',
+  218: 'Uacute',
+  219: 'Ucirc',
+  220: 'Uuml',
+  221: 'Yacute',
+  222: 'THORN',
+  223: 'szlig',
+  224: 'agrave',
+  225: 'aacute',
+  226: 'acirc',
+  227: 'atilde',
+  228: 'auml',
+  229: 'aring',
+  230: 'aelig',
+  231: 'ccedil',
+  232: 'egrave',
+  233: 'eacute',
+  234: 'ecirc',
+  235: 'euml',
+  236: 'igrave',
+  237: 'iacute',
+  238: 'icirc',
+  239: 'iuml',
+  240: 'eth',
+  241: 'ntilde',
+  242: 'ograve',
+  243: 'oacute',
+  244: 'ocirc',
+  245: 'otilde',
+  246: 'ouml',
+  247: 'divide',
+  248: 'oslash',
+  249: 'ugrave',
+  250: 'uacute',
+  251: 'ucirc',
+  252: 'uuml',
+  253: 'yacute',
+  254: 'thorn',
+  255: 'yuml',
+  402: 'fnof',
+  913: 'Alpha',
+  914: 'Beta',
+  915: 'Gamma',
+  916: 'Delta',
+  917: 'Epsilon',
+  918: 'Zeta',
+  919: 'Eta',
+  920: 'Theta',
+  921: 'Iota',
+  922: 'Kappa',
+  923: 'Lambda',
+  924: 'Mu',
+  925: 'Nu',
+  926: 'Xi',
+  927: 'Omicron',
+  928: 'Pi',
+  929: 'Rho',
+  931: 'Sigma',
+  932: 'Tau',
+  933: 'Upsilon',
+  934: 'Phi',
+  935: 'Chi',
+  936: 'Psi',
+  937: 'Omega',
+  945: 'alpha',
+  946: 'beta',
+  947: 'gamma',
+  948: 'delta',
+  949: 'epsilon',
+  950: 'zeta',
+  951: 'eta',
+  952: 'theta',
+  953: 'iota',
+  954: 'kappa',
+  955: 'lambda',
+  956: 'mu',
+  957: 'nu',
+  958: 'xi',
+  959: 'omicron',
+  960: 'pi',
+  961: 'rho',
+  962: 'sigmaf',
+  963: 'sigma',
+  964: 'tau',
+  965: 'upsilon',
+  966: 'phi',
+  967: 'chi',
+  968: 'psi',
+  969: 'omega',
+  977: 'thetasym',
+  978: 'upsih',
+  982: 'piv',
+  8226: 'bull',
+  8230: 'hellip',
+  8242: 'prime',
+  8243: 'Prime',
+  8254: 'oline',
+  8260: 'frasl',
+  8472: 'weierp',
+  8465: 'image',
+  8476: 'real',
+  8482: 'trade',
+  8501: 'alefsym',
+  8592: 'larr',
+  8593: 'uarr',
+  8594: 'rarr',
+  8595: 'darr',
+  8596: 'harr',
+  8629: 'crarr',
+  8656: 'lArr',
+  8657: 'uArr',
+  8658: 'rArr',
+  8659: 'dArr',
+  8660: 'hArr',
+  8704: 'forall',
+  8706: 'part',
+  8707: 'exist',
+  8709: 'empty',
+  8711: 'nabla',
+  8712: 'isin',
+  8713: 'notin',
+  8715: 'ni',
+  8719: 'prod',
+  8721: 'sum',
+  8722: 'minus',
+  8727: 'lowast',
+  8730: 'radic',
+  8733: 'prop',
+  8734: 'infin',
+  8736: 'ang',
+  8743: 'and',
+  8744: 'or',
+  8745: 'cap',
+  8746: 'cup',
+  8747: 'int',
+  8756: 'there4',
+  8764: 'sim',
+  8773: 'cong',
+  8776: 'asymp',
+  8800: 'ne',
+  8801: 'equiv',
+  8804: 'le',
+  8805: 'ge',
+  8834: 'sub',
+  8835: 'sup',
+  8836: 'nsub',
+  8838: 'sube',
+  8839: 'supe',
+  8853: 'oplus',
+  8855: 'otimes',
+  8869: 'perp',
+  8901: 'sdot',
+  8968: 'lceil',
+  8969: 'rceil',
+  8970: 'lfloor',
+  8971: 'rfloor',
+  9001: 'lang',
+  9002: 'rang',
+  9674: 'loz',
+  9824: 'spades',
+  9827: 'clubs',
+  9829: 'hearts',
+  9830: 'diams',
+  338: 'OElig',
+  339: 'oelig',
+  352: 'Scaron',
+  353: 'scaron',
+  376: 'Yuml',
+  710: 'circ',
+  732: 'tilde',
+  8194: 'ensp',
+  8195: 'emsp',
+  8201: 'thinsp',
+  8204: 'zwnj',
+  8205: 'zwj',
+  8206: 'lrm',
+  8207: 'rlm',
+  8211: 'ndash',
+  8212: 'mdash',
+  8216: 'lsquo',
+  8217: 'rsquo',
+  8218: 'sbquo',
+  8220: 'ldquo',
+  8221: 'rdquo',
+  8222: 'bdquo',
+  8224: 'dagger',
+  8225: 'Dagger',
+  8240: 'permil',
+  8249: 'lsaquo',
+  8250: 'rsaquo',
+  8364: 'euro'
+};
 String.prototype.join = function () {
   return (this + "");
 }
@@ -322,6 +577,12 @@ String.prototype.strip = function (chars) {
     }
   }
   return (str2);
+}
+String.prototype.htmlEscape = function () {
+  str = this.toString();
+  return str.replace(/[\u00A0-\u2666<>\&]/g, function (c) {
+    return "&" + (F.chars.htmlEscape[c.charCodeAt(0)] || "#" + c.charCodeAt(0)) + ";";
+  });
 }
 
 
@@ -566,10 +827,10 @@ F.operate.logic.nor = function (v1, v2) {
   return (!(v1 || v2));
 }
 F.operate.logic.xor = function (v1, v2) {
-  return ((v1 || v2 ) && (!(v1 && v2)));
+  return ((v1 || v2) && (!(v1 && v2)));
 }
 F.operate.logic.xnor = function (v1, v2) {
-  return (!((v1 || v2 ) && (!(v1 && v2))));
+  return (!((v1 || v2) && (!(v1 && v2))));
 }
 F.operate.bit = {};
 F.operate.bit.and = function (v1, v2) {
@@ -1556,10 +1817,10 @@ if (F._data.event) {
   F.getMousePos = function (e, offsetX, offsetY) {
     offsetX = parseInt(offsetX);
     offsetY = parseInt(offsetY);
-    if (! offsetX) {
+    if (!offsetX) {
       offsetX = 11;
     }
-    if (! offsetY) {
+    if (!offsetY) {
       offsetY = 11;
     }
     return {
@@ -1943,7 +2204,7 @@ F.Color = class {
   }
 }
 F.Color.presets = {};
-F.Color.css = {"IndianRed": "205,92,92","LightCoral": "240,128,128","Salmon": "250,128,114","DarkSalmon": "233,150,122","LightSalmon": "255,160,122","Crimson": "220,20,60","Red": "255,0,0","FireBrick": "178,34,34","DarkRed": "139,0,0","Pink": "255,192,203","LightPink": "255,182,193","HotPink": "255,105,180","DeepPink": "255,20,147","MediumVioletRed": "199,21,133","PaleVioletRed": "219,112,147","Coral": "255,127,80","Tomato": "255,99,71","OrangeRed": "255,69,0","DarkOrange": "255,140,0","Orange": "255,165,0","Gold": "255,215,0","Yellow": "255,255,0","LightYellow": "255,255,224","LemonChiffon": "255,250,205","LightGoldenrodYellow": "250,250,210","PapayaWhip": "255,239,213","Moccasin": "255,228,181","PeachPuff": "255,218,185","PaleGoldenrod": "238,232,170","Khaki": "240,230,140","DarkKhaki": "189,183,107","Lavender": "230,230,250","Thistle": "216,191,216","Plum": "221,160,221","Violet": "238,130,238","Orchid": "218,112,214","Fuchsia": "255,0,255","Magenta": "255,0,255","MediumOrchid": "186,85,211","MediumPurple": "147,112,219","BlueViolet": "138,43,226","DarkViolet": "148,0,211","DarkOrchid": "153,50,204","DarkMagenta": "139,0,139","Purple": "128,0,128","RebeccaPurple": "102,51,153","Indigo": "75,0,130","MediumSlateBlue": "123,104,238","SlateBlue": "106,90,205","DarkSlateBlue": "72,61,139","GreenYellow": "173,255,47","Chartreuse": "127,255,0","LawnGreen": "124,252,0","Lime": "0,255,0","LimeGreen": "50,205,50","PaleGreen": "152,251,152","LightGreen": "144,238,144","MediumSpringGreen": "0,250,154","SpringGreen": "0,255,127","MediumSeaGreen": "60,179,113","SeaGreen": "46,139,87","ForestGreen": "34,139,34","Green": "0,128,0","DarkGreen": "0,100,0","YellowGreen": "154,205,50","OliveDrab": "107,142,35","Olive": "128,128,0","DarkOliveGreen": "85,107,47","MediumAquamarine": "102,205,170","DarkSeaGreen": "143,188,143","LightSeaGreen": "32,178,170","DarkCyan": "0,139,139","Teal": "0,128,128","Aqua": "0,255,255","Cyan": "0,255,255","LightCyan": "224,255,255","PaleTurquoise": "175,238,238","Aquamarine": "127,255,212","Turquoise": "64,224,208","MediumTurquoise": "72,209,204","DarkTurquoise": "0,206,209","CadetBlue": "95,158,160","SteelBlue": "70,130,180","LightSteelBlue": "176,196,222","PowderBlue": "176,224,230","LightBlue": "173,216,230","SkyBlue": "135,206,235","LightSkyBlue": "135,206,250","DeepSkyBlue": "0,191,255","DodgerBlue": "30,144,255","CornflowerBlue": "100,149,237","RoyalBlue": "65,105,225","Blue": "0,0,255","MediumBlue": "0,0,205","DarkBlue": "0,0,139","Navy": "0,0,128","MidnightBlue": "25,25,112","Cornsilk": "255,248,220","BlanchedAlmond": "255,235,205","Bisque": "255,228,196","NavajoWhite": "255,222,173","Wheat": "245,222,179","BurlyWood": "222,184,135","Tan": "210,180,140","RosyBrown": "188,143,143","SandyBrown": "244,164,96","Goldenrod": "218,165,32","DarkGoldenrod": "184,134,11","Peru": "205,133,63","Chocolate": "210,105,30","SaddleBrown": "139,69,19","Sienna": "160,82,45","Brown": "165,42,42","Maroon": "128,0,0","White": "255,255,255","Snow": "255,250,250","Honeydew": "240,255,240","MintCream": "245,255,250","Azure": "240,255,255","AliceBlue": "240,248,255","GhostWhite": "248,248,255","WhiteSmoke": "245,245,245","Seashell": "255,245,238","Beige": "245,245,220","OldLace": "253,245,230","FloralWhite": "255,250,240","Ivory": "255,255,240","AntiqueWhite": "250,235,215","Linen": "250,240,230","LavenderBlush": "255,240,245","MistyRose": "255,228,225","Gainsboro": "220,220,220","LightGray": "211,211,211","LightGrey": "211,211,211","Silver": "192,192,192","DarkGray": "169,169,169","DarkGrey": "169,169,169","Gray": "128,128,128","Grey": "128,128,128","DimGray": "105,105,105","DimGrey": "105,105,105","LightSlateGray": "119,136,153","LightSlateGrey": "119,136,153","SlateGray": "112,128,144","SlateGrey": "112,128,144","DarkSlateGray": "47,79,79","DarkSlateGrey": "47,79,79","Black": "0,0,0"};
+F.Color.css = {"IndianRed": "205,92,92", "LightCoral": "240,128,128", "Salmon": "250,128,114", "DarkSalmon": "233,150,122", "LightSalmon": "255,160,122", "Crimson": "220,20,60", "Red": "255,0,0", "FireBrick": "178,34,34", "DarkRed": "139,0,0", "Pink": "255,192,203", "LightPink": "255,182,193", "HotPink": "255,105,180", "DeepPink": "255,20,147", "MediumVioletRed": "199,21,133", "PaleVioletRed": "219,112,147", "Coral": "255,127,80", "Tomato": "255,99,71", "OrangeRed": "255,69,0", "DarkOrange": "255,140,0", "Orange": "255,165,0", "Gold": "255,215,0", "Yellow": "255,255,0", "LightYellow": "255,255,224", "LemonChiffon": "255,250,205", "LightGoldenrodYellow": "250,250,210", "PapayaWhip": "255,239,213", "Moccasin": "255,228,181", "PeachPuff": "255,218,185", "PaleGoldenrod": "238,232,170", "Khaki": "240,230,140", "DarkKhaki": "189,183,107", "Lavender": "230,230,250", "Thistle": "216,191,216", "Plum": "221,160,221", "Violet": "238,130,238", "Orchid": "218,112,214", "Fuchsia": "255,0,255", "Magenta": "255,0,255", "MediumOrchid": "186,85,211", "MediumPurple": "147,112,219", "BlueViolet": "138,43,226", "DarkViolet": "148,0,211", "DarkOrchid": "153,50,204", "DarkMagenta": "139,0,139", "Purple": "128,0,128", "RebeccaPurple": "102,51,153", "Indigo": "75,0,130", "MediumSlateBlue": "123,104,238", "SlateBlue": "106,90,205", "DarkSlateBlue": "72,61,139", "GreenYellow": "173,255,47", "Chartreuse": "127,255,0", "LawnGreen": "124,252,0", "Lime": "0,255,0", "LimeGreen": "50,205,50", "PaleGreen": "152,251,152", "LightGreen": "144,238,144", "MediumSpringGreen": "0,250,154", "SpringGreen": "0,255,127", "MediumSeaGreen": "60,179,113", "SeaGreen": "46,139,87", "ForestGreen": "34,139,34", "Green": "0,128,0", "DarkGreen": "0,100,0", "YellowGreen": "154,205,50", "OliveDrab": "107,142,35", "Olive": "128,128,0", "DarkOliveGreen": "85,107,47", "MediumAquamarine": "102,205,170", "DarkSeaGreen": "143,188,143", "LightSeaGreen": "32,178,170", "DarkCyan": "0,139,139", "Teal": "0,128,128", "Aqua": "0,255,255", "Cyan": "0,255,255", "LightCyan": "224,255,255", "PaleTurquoise": "175,238,238", "Aquamarine": "127,255,212", "Turquoise": "64,224,208", "MediumTurquoise": "72,209,204", "DarkTurquoise": "0,206,209", "CadetBlue": "95,158,160", "SteelBlue": "70,130,180", "LightSteelBlue": "176,196,222", "PowderBlue": "176,224,230", "LightBlue": "173,216,230", "SkyBlue": "135,206,235", "LightSkyBlue": "135,206,250", "DeepSkyBlue": "0,191,255", "DodgerBlue": "30,144,255", "CornflowerBlue": "100,149,237", "RoyalBlue": "65,105,225", "Blue": "0,0,255", "MediumBlue": "0,0,205", "DarkBlue": "0,0,139", "Navy": "0,0,128", "MidnightBlue": "25,25,112", "Cornsilk": "255,248,220", "BlanchedAlmond": "255,235,205", "Bisque": "255,228,196", "NavajoWhite": "255,222,173", "Wheat": "245,222,179", "BurlyWood": "222,184,135", "Tan": "210,180,140", "RosyBrown": "188,143,143", "SandyBrown": "244,164,96", "Goldenrod": "218,165,32", "DarkGoldenrod": "184,134,11", "Peru": "205,133,63", "Chocolate": "210,105,30", "SaddleBrown": "139,69,19", "Sienna": "160,82,45", "Brown": "165,42,42", "Maroon": "128,0,0", "White": "255,255,255", "Snow": "255,250,250", "Honeydew": "240,255,240", "MintCream": "245,255,250", "Azure": "240,255,255", "AliceBlue": "240,248,255", "GhostWhite": "248,248,255", "WhiteSmoke": "245,245,245", "Seashell": "255,245,238", "Beige": "245,245,220", "OldLace": "253,245,230", "FloralWhite": "255,250,240", "Ivory": "255,255,240", "AntiqueWhite": "250,235,215", "Linen": "250,240,230", "LavenderBlush": "255,240,245", "MistyRose": "255,228,225", "Gainsboro": "220,220,220", "LightGray": "211,211,211", "LightGrey": "211,211,211", "Silver": "192,192,192", "DarkGray": "169,169,169", "DarkGrey": "169,169,169", "Gray": "128,128,128", "Grey": "128,128,128", "DimGray": "105,105,105", "DimGrey": "105,105,105", "LightSlateGray": "119,136,153", "LightSlateGrey": "119,136,153", "SlateGray": "112,128,144", "SlateGrey": "112,128,144", "DarkSlateGray": "47,79,79", "DarkSlateGrey": "47,79,79", "Black": "0,0,0"};
 for (let j = 0; j < F.Color.css.keys().length; j++) {
   let rgb = F.Color.css.values()[j].split(",");
   new F.Color({r: rgb[0], g: rgb[1], b: rgb[2]}, F.Color.css.keys()[j]);
@@ -2288,9 +2549,9 @@ F.frequency = {"C0": 16.35, "C#0": 17.32, "D0": 18.35, "D#0": 19.45, "E0": 20.6,
 if (F._data.node) {
   try {
     F._data.version = JSON.parse(require("fs").readFileSync("package.json")).version;
-  } catch {}
+  } catch { }
   F.input = function (prompt) {
-    if (! prompt) {
+    if (!prompt) {
       prompt = "";
     }
     return (new Promise((resolve) => {
