@@ -1510,17 +1510,17 @@ if (F._data.event) {
   F.getKeyCodes = function (data) {
     var keys = [];
     if (data.keys) {
-      for (i = 0; i < data.keys.keys().length; i++) {
+      for (k = 0; k < data.keys.keys().length; k++) {
         var val = false;
-        for (i2 = 0; i2 < data.keys.values()[i].length; i2++) {
-          if (F.keyDown(data.keys.values()[i][i2])) {
+        for (v = 0; v < data.keys.values()[k].length; v++) {
+          if (F.keyDown(data.keys.values()[k][v])) {
             val = true;
           }
         }
-        if (val && !(keys.includes(data.keys.keys()[i]))) {
-          keys.push(data.keys.keys()[i]);
+        if (val && !(keys.includes(data.keys.keys()[k]))) {
+          keys.push(data.keys.keys()[k]);
         } else {
-          keys = keys.remove(data.keys.keys()[i]);
+          keys = keys.remove(data.keys.keys()[k]);
         }
       }
     }
