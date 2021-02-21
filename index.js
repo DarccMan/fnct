@@ -957,13 +957,13 @@ Array.prototype.s = function (start, end) {
   arr = arr.slice(start, end);
   if (arr.length <= 1) {
     arr = arr[0];
-    if (F.isJSON(arr)) {
+    if (F.isJSON(arr) && arr != 0) {
       arr = JSON.parse(arr);
     }
     return (arr ? arr : []);
   }
   for (a = 0; a < arr.length; a++) {
-    if (F.isJSON(arr[a])) {
+    if (F.isJSON(arr[a]) && arr[a] != 0) {
       arr[a] = JSON.parse(arr[a]);
     }
   }
@@ -2081,7 +2081,23 @@ if (F._data.document) {
       queryRaw = queryRaw.join("?");
       temp = queryRaw.split("&");
       for (i = 0; i < temp.length; i++) {
-        query[temp[i].split("=")[0]] = temp[i].split("=").s(1).join("=");
+        if (temp[i] != null && temp[i].split("=")[0] != "") {
+          if (temp[i].includes("=")) {
+            if (temp[i].split("=").s(1) == "") {
+              query[temp[i].split("=")[0]] = "";
+            } else {
+              if (typeof temp[i].split("=").s(1) == "number") {
+                query[temp[i].split("=")[0]] = temp[i].split("=").s(1);
+              } else if (typeof temp[i].split("=").s(1) == "object") {
+                query[temp[i].split("=")[0]] = temp[i].split("=").s(1);
+              } else {
+                query[temp[i].split("=")[0]] = temp[i].split("=").s(1).toString();
+              }
+            }
+          } else {
+            query[temp[i]] = true;
+          }
+        }
       }
       delete temp;
     } else {
