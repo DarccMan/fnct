@@ -1980,6 +1980,9 @@ if (F._data.document) {
   doc.create = function () {
     return (doc.createElement(arguments[0]));
   }
+  doc.query = function () {
+    return (doc.querySelectorAll(arguments[0]));
+  }
   doc.head = doc.tag("head")[0];
   doc.doc = doc.documentElement;
   doc.html = doc.tag("html")[0];
