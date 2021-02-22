@@ -474,6 +474,19 @@ F.min = function () {
   }
   return (min == Infinity ? NaN : min);
 }
+F.max = function () {
+  let args = arguments;
+  if (args[0] && args[0].constructor == Array) {
+    args = args[0];
+  }
+  max = 0 - Infinity;
+  for (m = 0; m < args.length; m++) {
+    if (args[m] > max) {
+      max = args[m];
+    }
+  }
+  return (max == (0 - Infinity) ? NaN : max);
+}
 F.factor = function () {
   let args = arguments;
   if (args[0] && args[0].constructor == Array) {
