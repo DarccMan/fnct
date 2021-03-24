@@ -1,4 +1,6 @@
 # Functions.js
+<img src="image/icon-alt.png" width="100">
+
 Functions.js is a javascript library for NodeJS and HTML. It is a compilation of various functions and classes that are very useful.
 
 ## Installation
