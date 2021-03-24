@@ -49,7 +49,7 @@ const F = require("fnct"); // NodeJS (HTML does not need this)
 [View the docs](./howto.md#how-to-use-functionsjs) (not finished)
 
 ## Author
- - Darcy
+ - [Darcy](https://github.com/DarccMan)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
