@@ -712,6 +712,12 @@ F.average.mean = function (arr) {
   }
   return (tot / amount);
 }
+F.mod = (x, d) => x % d;
+F.amod = (x, d) => x % d + d * Math.max(0, -Math.sign(x));
+F.sin = function (x) {
+  return (Math.min(1, Math.floor(F.amod(2 * x / Math.PI - 1, 4) / 2)) * (Math.floor(F.amod(2 * x / Math.PI, 2)) * (Math.floor(2 * x / Math.PI) - 2 * x / Math.PI) ** 2 + Math.floor(F.amod(2 * x / Math.PI + 1, 2)) * (2 - (Math.floor(-2 * x / Math.PI) + 2 * x / Math.PI) ** 2)) + Math.min(1, Math.floor(F.amod(2 * x / Math.PI + 1, 4) / 2)) * (Math.floor(F.amod(-2 * x / Math.PI, 2)) * (Math.floor(-2 * x / Math.PI) + 2 * x / Math.PI) ** 2 + Math.floor(F.amod(-2 * x / Math.PI + 1, 2)) * (2 - (Math.floor(2 * x / Math.PI) - 2 * x / Math.PI) ** 2)) - 1);
+}
+F.cos = (x) => F.sin(x - (Math.PI / 2));
 
 Number.prototype.join = function () {
   return (this.toString());
