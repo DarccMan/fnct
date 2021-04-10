@@ -509,9 +509,6 @@ F.factor = function () {
   }
   return (NaN);
 }
-F.toOne = function (num) {
-  return (num.toOne())
-}
 F.sleep = function (time) {
   return (new Promise((resolve) => {
     setTimeout(() => {
@@ -1527,7 +1524,8 @@ if (F._data.event) {
     return (false);
   }
   F.getKeyCodes = function (data) {
-    var keys = [];
+    // var keys = [];
+    var keys = {};
     if (data.keys) {
       for (k = 0; k < data.keys.keys().length; k++) {
         var val = false;
@@ -1536,10 +1534,12 @@ if (F._data.event) {
             val = true;
           }
         }
-        if (val && !(keys.includes(data.keys.keys()[k]))) {
-          keys.push(data.keys.keys()[k]);
+        if (val && !keys[data.keys.keys()[k]]) {
+          // keys.push(data.keys.keys()[k]);
+          keys[data.keys.keys()[k]] = true;
         } else {
-          keys = keys.remove(data.keys.keys()[k]);
+          // keys = keys.remove(data.keys.keys()[k]);
+          delete keys[data.keys.keys()[k]];
         }
       }
     }
@@ -1551,10 +1551,12 @@ if (F._data.event) {
             val = true;
           }
         }
-        if (val && !(keys.includes(data.buttons.keys()[i]))) {
-          keys.push(data.buttons.keys()[i]);
+        if (val && !keys[data.buttons.keys()[i]]) {
+          // keys.push(data.buttons.keys()[i]);
+          keys[data.buttons.keys()[i]] = true;
         } else {
-          keys = keys.remove(data.buttons.keys()[i]);
+          // keys = keys.remove(data.buttons.keys()[i]);
+          delete keys[data.buttons.keys()[i]];
         }
       }
     }
