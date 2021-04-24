@@ -1432,11 +1432,17 @@ if (F._data.canvas) {
     this.height = parseFloat(this.style.height) * amount;
   }
   HTMLCanvasElement.prototype.initialize = function () {
-    this.__defineGetter__("w", () => {
+    this.__defineGetter__("w", function () {
       return (this.width);
     });
-    this.__defineGetter__("h", () => {
+    this.__defineGetter__("h", function () {
       return (this.height);
+    });
+    this.__defineSetter__("w", function (value) {
+      this.width = value;
+    });
+    this.__defineSetter__("h", function (value) {
+      this.height = value;
     });
   }
   CanvasRenderingContext2D.prototype.fillCanvas = function (color) {
