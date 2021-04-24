@@ -1252,11 +1252,11 @@ F.collide = function (r1, r2, ellipse1, ellipse2) {
   if (
     !(
       r1
-      && r1.x
-      && r1.y
+      && (r1.x || r1.x === 0)
+      && (r1.y || r1.y === 0)
       && r2
-      && r2.x
-      && r2.y
+      && (r2.x || r2.x === 0)
+      && (r2.y || r2.y === 0)
     )
   ) {
     return (false);
@@ -1445,7 +1445,7 @@ if (F._data.canvas) {
       color = "rgba(60, 60, 60)";
     }
     this.fillStyle = color;
-    this.fillRect(0, 0, canvas.width, canvas.height);
+    this.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     this.fillStyle = prevColor;
   }
   CanvasRenderingContext2D.prototype.getPixelColor = function (x, y) {
@@ -1453,9 +1453,9 @@ if (F._data.canvas) {
   }
   CanvasRenderingContext2D.prototype.scanCanvas = function () {
     output = []
-    for (x = 0; x < canvas.width; x++) {
+    for (x = 0; x < ctx.canvas.width; x++) {
       output.push([]);
-      for (y = 0; y < canvas.height; y++) {
+      for (y = 0; y < ctx.canvas.height; y++) {
         output[x].push(F.rgb_hex(ctx.getPixelColor(x, y)[0], ctx.getPixelColor(x, y)[1], ctx.getPixelColor(x, y)[2]));
       }
     }
