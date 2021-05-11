@@ -1451,7 +1451,7 @@ if (F._data.canvas) {
       color = "rgba(60, 60, 60)";
     }
     this.fillStyle = color;
-    this.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    this.fillRect(0, 0, this.canvas.width, this.canvas.height);
     this.fillStyle = prevColor;
   }
   CanvasRenderingContext2D.prototype.getPixelColor = function (x, y) {
@@ -1459,10 +1459,10 @@ if (F._data.canvas) {
   }
   CanvasRenderingContext2D.prototype.scanCanvas = function () {
     output = []
-    for (x = 0; x < ctx.canvas.width; x++) {
+    for (x = 0; x < this.canvas.width; x++) {
       output.push([]);
-      for (y = 0; y < ctx.canvas.height; y++) {
-        output[x].push(F.rgb_hex(ctx.getPixelColor(x, y)[0], ctx.getPixelColor(x, y)[1], ctx.getPixelColor(x, y)[2]));
+      for (y = 0; y < this.canvas.height; y++) {
+        output[x].push(F.rgb_hex(this.getPixelColor(x, y)[0], this.getPixelColor(x, y)[1], this.getPixelColor(x, y)[2]));
       }
     }
     return (output);
