@@ -1607,6 +1607,8 @@ if (F._data.event) {
     return {
       x: e.clientX - 11,
       y: e.clientY - 11,
+      rx: e.clientX,
+      ry: e.clientY,
       w: 1,
       h: 1,
       r: 1,
@@ -1644,12 +1646,12 @@ if (F._data.event) {
     F.touch.x = e.touches[0].clientX;
     F.touch.y = e.touches[0].clientY;
     F.touch.onCanvas = F.onCanvas(e.touches[0]);
-    F.buttonsDown[0] = true;
+    // F.buttonsDown[0] = true;
   }, false);
   F.event.touchend = addEventListener("touchend", (e) => {
     F.touch.unknown = false;
     F.touch.down = false;
-    F.buttonsDown[0] = false;
+    // F.buttonsDown[0] = false;
   }, false);
   F.event.touchmove = addEventListener("touchmove", (e) => {
     F.touch.unknown = false;
