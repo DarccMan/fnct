@@ -548,6 +548,9 @@ F.parseBoolean = function (bool) {
   }
   return (!!bool);
 }
+F.nullish = function (value) {
+  return (!value && value !== 0);
+}
 F.operate = {};
 F.operate.equal = {};
 F.operate.equal.value = function (v1, v2) {
@@ -760,20 +763,15 @@ Number.prototype.round = function (dec, type) {
   }
   return (Math.round(num * (10 ** dec))) / (10 ** dec);
 }
-Number.prototype.setBorder = function (min, max) {
+Number.prototype.setBorder = function (minN, maxN) {
   let num = parseFloat(this);
-  if ([null, undefined, ""].includes(min)) {
-    min = 0;
+  if (F.nullish(minN)) {
+    minN = 0;
   }
-  if ([null, undefined, ""].includes(max)) {
-    max = 100;
+  if (F.nullish(maxN)) {
+    maxN = Infinity;
   }
-  if (num > max) {
-    num = max;
-  } else if (num < min) {
-    num = min;
-  }
-  return (num);
+  return (Math.max(minN, Math.min(maxN, num)));
 }
 Number.prototype.toOne = function () {
   let num = parseFloat(this);
