@@ -2263,6 +2263,14 @@ if (F._data.document) {
       this.sound.pause();
     }
   }
+  F.radioChecked = function (name) {
+    radios = document.getElementsByName(name);
+    for (i = 0; i < radios.length; i++) {
+      if (radios[i].checked) {
+        return radios[i].value;
+      }
+    }
+  }
   HTMLElement.prototype.removeChildren = function () {
     while (this.firstChild) {
       this.firstChild.remove();
