@@ -559,7 +559,7 @@ F.parseBoolean = function (bool) {
   return (!!bool);
 }
 F.nullish = function (value) {
-  return (!value && value !== 0 &&  && value !== false);
+  return (!value && value !== 0 && value !== false);
 }
 F.operate = {};
 F.operate.equal = {};
