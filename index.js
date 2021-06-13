@@ -349,7 +349,17 @@ F.randomInt = function (min, max) {
     min = max;
   }
   min--;
-  return (Math.ceil((Math.random() * (max - min)) + min));
+  return Math.ceil((Math.random() * (max - min)) + min);
+}
+F.randomFloat = function (min, max) {
+  if (min > max) {
+    max = min;
+  }
+  if (max < min) {
+    min = max;
+  }
+  min--;
+  return (Math.random() * (max - min)) + min;
 }
 F.randomChoice = function (arr) {
   if (![null, undefined].includes(arr)) {
@@ -549,7 +559,7 @@ F.parseBoolean = function (bool) {
   return (!!bool);
 }
 F.nullish = function (value) {
-  return (!value && value !== 0);
+  return (!value && value !== 0 &&  && value !== false);
 }
 F.operate = {};
 F.operate.equal = {};
